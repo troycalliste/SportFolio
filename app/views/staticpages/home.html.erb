@@ -1,21 +1,38 @@
 <head>
+  <link href="https://fonts.googleapis.com/css?family=Rokkitt|Vollkorn" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Sportfolio- Invest Your Way To The Top</title>
 </head>
 <body>
   <header>
+    <!-- <div class="bar"></div> -->
       <div class="container">
         <div class="main">
-          <%= link_to %>
-          <nav>
-            <div class"nav-items">
-
-            </div>
-          </nav>
+          <div class="logo">
+          <%= link_to "SportFolio", root_path, id: "heyo" %>
+          </div>
+            <ul class="nav-items">
+                    <li><%= link_to "COMPANIES" %></li>
+                    <li><%= link_to "NEWS" %></li>
+                    <li><%= link_to "COMMUNITY" %></li>
+                    <li><%= link_to "SECTORS" %></li>
+                    <li class="search">
+                      <div class="space">
+                        <%= form_with url: '/search', method: :get, local: true, class: "searchy" do |f| %>
+                        <%= f.text_field :q, id: :q %>
+                        <button style='width:40px;'>
+                           <i class="icon-share-alt icon-white"></i>
+                          </button>
+                        <% end %>
+                      </div>
+                    <li>
+            </ul>
         </div>
 
       </div>
   </header>
+  <div class="companies">
+    <h1>this is a paragraph</h1>
+  </div>
 
-<h1>Staticpages#home</h1>
-<p>Find me in app/views/staticpages/home.html.erb</p>
 </body>

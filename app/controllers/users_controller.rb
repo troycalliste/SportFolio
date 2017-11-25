@@ -1,6 +1,4 @@
-require 'httparty'
 class UsersController < ApplicationController
-  include HTTParty
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 
@@ -8,7 +6,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @user = User.first.list
+
   end
 
   # GET /users/1
