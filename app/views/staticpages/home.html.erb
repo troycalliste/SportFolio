@@ -1,16 +1,19 @@
-<head>
-  <link href="https://fonts.googleapis.com/css?family=Rokkitt|Vollkorn" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <title>Sportfolio- Invest Your Way To The Top</title>
-</head>
-<body>
+
   <header>
-    <!-- <div class="bar"></div> -->
+    <!-- will put in navbar partial  for app/layout> -->
       <div class="container">
         <div class="main">
           <div class="logo">
-          <%= link_to "SportFolio", root_path, id: "heyo" %>
+          <%= link_to "SportFolio", root_path, id: "homelogo" %>
           </div>
+            <div class="signup">
+              <% if user_signed_in? %>
+                Loggin in as
+              <% else %>
+                <%= link_to "Sign up", new_user_path %>
+                <%= link_to "Login" %>
+              <% end %>
+            </div>
             <ul class="nav-items">
                     <li><%= link_to "COMPANIES" %></li>
                     <li><%= link_to "NEWS" %></li>
@@ -28,11 +31,57 @@
                     <li>
             </ul>
         </div>
+     <div class="usersignup">
+        <%= form_with model: @user do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
 
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+
+        <%= f.submit "Sign Up" %>
+        <% end %>
       </div>
+    </div>
+
   </header>
+
+
+
+
+
+  <!-- sign up partial -->
+
+
+
+
+
+  <!-- will put in scrollfeed partial  -->
   <div class="companies">
-    <h1>this is a paragraph</h1>
+    <div class="wrapp">
+    <div class="marquee">
+      <div class="slide">
+        <span class="spanner">
+
+
+    <span>
+    <% Company.order('changepercent DESC').limit(20).each do |c| %>
+      <span class="spn">
+      <span>
+    <%= c.ticker %>
+    <%= content_tag(:div, "% #{c.changepercent * 100}", class: "change-price") %>
+  </span>
+</span>
+    <% end %>
+
+
+</span>
+        </div>
+    </div>
   </div>
 
-</body>
+</div>
+  </div>

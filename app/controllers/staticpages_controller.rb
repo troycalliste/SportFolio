@@ -1,8 +1,11 @@
 class StaticpagesController < ApplicationController
+
+
   def home
   end
 
   def help
+    @test = Company.all
   end
 
   def tour
@@ -10,4 +13,11 @@ class StaticpagesController < ApplicationController
 
   def about
   end
+
+  protected
+
+ def rescue_from_timeout(exception)
+
+ end
+
 end

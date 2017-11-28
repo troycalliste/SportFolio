@@ -1,4 +1,5 @@
 $(document).on "ready page:load", ->
+  # navbar change color on scroll
   $(document).scroll ->
     scroll_start = 0
     scroll_start = $(this).scrollTop()

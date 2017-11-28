@@ -1,2 +1,5 @@
-<h1>Staticpages#help</h1>
-<p>Find me in app/views/staticpages/help.html.erb</p>
+<!-- test out api call with model method -->
+<% @test.find_each(batch_size: 10) do |c| %>
+<%= c.check %>
+ <% c.save %>
+ <% end %>

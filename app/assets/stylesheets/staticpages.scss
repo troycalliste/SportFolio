@@ -8,10 +8,15 @@ body {
   margin: 0;
   padding: 0;
   font-family: arial, serif;
-  background-image: url("polygonal.jpg");
+  // background-image: url("8647.jpg");
+  background-color: lightblue;
+  background-size: 1600px 1164px;
+
   // padding-bottom: 1700px;
   height: 650px;
-  background-repeat: repeat-x;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
   background-position: 0px -250px;
 
 
@@ -22,6 +27,9 @@ body {
 //   padding-top: 3px;
 //
 // }
+
+
+//  style for nav bar
 .main {
   top: 0;
   width: 100%;
@@ -38,11 +46,11 @@ body {
     background-color: rgba(0,0,0,0.8);
 }
 .nav-items {
-  float: right;
-  padding-right: 480px;
+  // float: right;
+  padding-right: 0px;
   padding-left: 0px;
-  margin-top: 0;
-  margin-right: 20px;
+  margin: 0px 0px 0px 0px;
+  width: 70%;
 }
 .nav-items li {
   padding-right: 10px;
@@ -130,6 +138,7 @@ opacity: 1;
   text-decoration: none;
   font-size: 3em;
   font-weight: 900;
+  user-select: none;
 }
 
 .logo a {
@@ -140,10 +149,94 @@ opacity: 1;
   background-color: transparent;
   text-decoration: none;
 }
+.signup {
+ padding-top: 0px;
+ padding-left: 100px;
+ float: right;
+ text-decoration: none;
+ user-select: none;
+}
 
 .companies {
   padding-top: 1px;
   padding-bottom: 1000px;
   background-color: rgb(68, 68, 68);
   position: relative;
+}
+
+
+
+
+
+// *  style for horizontal scrolling feed
+
+.wrap {
+  margin: 0;
+  font-size: 50px;
+  font-family: sans-serif;
+  color: #333;
+  overflow: hidden;
+}
+
+.spn {
+  width: 60px;
+  height: 50px;
+  font-size: 10px;
+  display: inline-block;
+  margin: 0 30.7px;
+  float: left;
+  transition: all .2s ease-out;
+}
+
+
+.marquee {
+  height: 100px;
+  width: 800px;
+  background: white;
+  border: 1px solid red;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+  margin: 100px auto;
+}
+
+.slide {
+  display: block;
+  width: 320%;
+  margin: 40px 0;
+  position: absolute;
+  animation: marquee 20s linear infinite;
+}
+
+/*.half {
+  float: left;
+  width: 10%;
+}*/
+.spanner {
+  float: left;
+  // width: 50%;
+}
+
+@keyframes marquee {
+  0% { left: 5px; }
+  100% { left: -150%; }
+}
+
+
+.change-price {
+  color: green;
+}
+
+.low-price {
+  color: red;
+}
+
+
+
+
+// signup form
+
+.usersignup {
+  padding-top: 200px;
+  padding-left: 700px;
 }
