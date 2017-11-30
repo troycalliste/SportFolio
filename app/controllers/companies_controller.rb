@@ -1,4 +1,5 @@
 class CompaniesController < ApplicationController
+  rescue_from ActionView::Template::Error, with: :handle_timeout
   before_action :authenticate_user!
   before_action :set_company, only: [:show, :edit, :update, :destroy]
 
@@ -6,6 +7,7 @@ class CompaniesController < ApplicationController
   # GET /companies.json
   def index
     @companies = Company.first(10)   #will show by Company.order('latestvolume DESC').limit(25)
+    @test = Company.all
   end
 
   # GET /companies/1
@@ -59,6 +61,18 @@ class CompaniesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to companies_url, notice: 'Company was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  protected
+
+  def handle_timeout(exception)
+    count = 0
+    begin if count < 10
+      retry
+    
+
+
     end
   end
 

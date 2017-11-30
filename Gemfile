@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'openssl'
 # gem 'intrinio-realtime'
 gem 'thread'
-# gem 'redis', '~> 3.0'
+gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'httparty'

@@ -1,5 +1,7 @@
 <!-- test out api call with model method -->
-<% @test.find_each(batch_size: 10) do |c| %>
-<%= c.check %>
- <% c.save %>
- <% end %>
+ <% loop do %>
+  <% @test.find_each(batch_size: 10) do |c| %>
+  <% c.check %>
+  <% c.save %>
+  <% end %>
+<% end %>

@@ -1,2 +1,6 @@
-<h1>Staticpages#about</h1>
-<p>Find me in app/views/staticpages/about.html.erb</p>
+ <% loop do %>
+<% @test.find_each(batch_size: 10) do |c| %>
+<%= c.checktwo %>
+ <% c.save %>
+ <% end %>
+<% end %>
