@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :companies
+
+  resources :companies do
+    collection do
+      get 'events'
+    end
+  end
   root 'staticpages#home'
+  #
+  # post 'companies/publish', to: "companies#pub"
+  #
+  # get 'companies/subscribe', to: "companies#sub"
 
   get 'staticpages/home'
 

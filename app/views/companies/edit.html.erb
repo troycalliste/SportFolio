@@ -1,6 +1,11 @@
-<h1>Editing Company</h1>
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+<head>
 
+ <h1>Editing Company</h1>
+</header>
+<body>
 <%= render 'form', company: @company %>
 
 <%= link_to 'Show', @company %> |
 <%= link_to 'Back', companies_path %>
+</body>

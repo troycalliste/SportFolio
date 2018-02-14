@@ -51,18 +51,18 @@
     <div class="wrapp">
     <div class="marquee">
       <div class="slide">
-        <span class="spanner">
+        <span class="spanner" data-url="<%= companies_url %>">
 
 
-    <span>
-    <% Company.order('changepercent DESC').limit(20).each do |c| %>
+  <div>
+    <% @bigcomp.each do |c| %>
       <span class="spn">
-      <span>
-    <%= c.ticker %>
-    <%= content_tag(:div, "% #{c.changepercent * 100}", class: "change-price") %>
-  </span>
-</span>
+       <%= c.ticker %>
+       <%= content_tag(:div, "% #{c.changepercent * 100}", class: "change-price") %>
+
+     </span>
     <% end %>
+  </div>
 
 
 </span>
@@ -72,3 +72,7 @@
 
 </div>
   </div>
+
+<div class="messagetest">
+  <p>just testing where this goes</p>
+</div>

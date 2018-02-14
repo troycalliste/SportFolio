@@ -2,9 +2,9 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Companies</h1>
- <% loop do %>
-<% @test.find_each(batch_size: 10) do |c| %>
-<%= c.checkthree %>
- <% c.save %>
- <% end %>
- <% end %>
+
+
+<% @companies.each do |c| %>
+<%= c.ticker %>
+<%= c.change %>
+<% end %>

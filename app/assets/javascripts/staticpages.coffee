@@ -7,6 +7,19 @@ $(document).on "ready page:load", ->
       $(".main").addClass("change")
     else
       $(".main").removeClass("change")
+
+
+
+   CompanyPoller =
+     poll: ->
+       setInterval @request, 3000
+
+     request: ->
+       $.get($('.spanner').data('url'))
+
+   jQuery ->
+     if $('.spanner').length > 0
+       CompanyPoller.poll()
   # $(".searchy input").focus ->
   #   $(".space").addClass("spacefocus") && $(".fa").addClass("iconfocus")
   #

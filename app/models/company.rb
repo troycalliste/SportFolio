@@ -2,7 +2,7 @@ require 'rest-client'
 require 'json'
 class Company < ApplicationRecord
 
-   def check
+   def nameupdate
 
      RestClient.get("https://api.iextrading.com/1.0/stock/#{self.ticker}/quote") { |response, request, result, &block|
             case response.code
@@ -19,7 +19,7 @@ class Company < ApplicationRecord
    end
 
 
- def checktwo
+ def chngeupdate
 
    RestClient.get("https://api.iextrading.com/1.0/stock/#{self.ticker}/quote") { |response, request, result, &block|
           case response.code
@@ -36,7 +36,7 @@ class Company < ApplicationRecord
  end
 
 
- def checkthree
+ def chngepercntges
 
    RestClient.get("https://api.iextrading.com/1.0/stock/#{self.ticker}/quote") { |response, request, result, &block|
           case response.code
@@ -51,4 +51,11 @@ class Company < ApplicationRecord
 
  }
   end
+  def updatechanges
+     @test = Company.all
+     @test.find_each(batch_size: 10) do |c|
+     c.chngepercntges
+     c.save
+     end
+ end
 end

@@ -1,0 +1,7 @@
+<% @bigcomp.each do |c| %>
+  <span class="spn">
+   <%= c.name %>
+   <%= content_tag(:div, "% #{c.changepercent * 100}", class: "change-price") %>
+
+ </span>
+<% end %>
