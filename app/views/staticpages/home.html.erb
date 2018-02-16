@@ -31,7 +31,13 @@
                     <li>
             </ul>
         </div>
+        <div class="homesignup">
+          <%= form_with url:  new_user_session_path do |form| %>
+            <%= form.text_field :username, placeholder: "Enter Username to Sign Up..." %>
+          <% end %>
+       </div>
 
+       <%= render 'scroll' %>
     </div>
 
   </header>
@@ -45,33 +51,8 @@
 
 
 
-
   <!-- will put in scrollfeed partial  -->
-  <div class="companies">
-    <div class="wrapp">
-    <div class="marquee">
-      <div class="slide">
-        <span class="spanner" data-url="<%= companies_url %>">
 
-
-  <div>
-    <% @bigcomp.each do |c| %>
-      <span class="spn">
-       <%= c.ticker %>
-       <%= content_tag(:div, "% #{c.changepercent * 100}", class: "change-price") %>
-
-     </span>
-    <% end %>
-  </div>
-
-
-</span>
-        </div>
-    </div>
-  </div>
-
-</div>
-  </div>
 
 <div class="messagetest">
   <p>just testing where this goes</p>

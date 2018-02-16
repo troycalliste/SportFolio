@@ -6,9 +6,6 @@
 #logs
 
 
-every 1.hour do
-  runner "Company.all.checkthree"
-end
 # Example:
 #
 

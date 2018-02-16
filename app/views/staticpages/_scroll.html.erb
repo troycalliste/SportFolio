@@ -1,0 +1,27 @@
+<div class="companies">
+  <div class="wrapp">
+  <div class="marquee">
+    <div class="slide">
+      <span class="spanner" data-url="<%= companies_url %>">
+
+
+ <div>
+  <% @bigcomp.each do |c| %>
+    <span class="spn">
+     <%= content_tag(:span, "#{c.ticker}" , class: "ticker") %>&nbsp&nbsp&nbsp&nbsp
+     <%= content_tag(:span, "  #{c.changepercent * 100}%", class: "change-price") %>
+     <%= content_tag(:div, "#{c.currentprice}" , class: "currentprice") %>
+      <span class="vole">Volume:</span>
+     <%= content_tag(:span, "#{c.volume}" , class: "volume")%>
+
+   </span>
+  <% end %>
+ </div>
+
+
+</span>
+      </div>
+  </div>
+ </div>
+
+</div>

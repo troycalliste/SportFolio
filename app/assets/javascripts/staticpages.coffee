@@ -12,7 +12,7 @@ $(document).on "ready page:load", ->
 
    CompanyPoller =
      poll: ->
-       setInterval @request, 3000
+       setTimeout @request, 3000
 
      request: ->
        $.get($('.spanner').data('url'))
@@ -20,6 +20,11 @@ $(document).on "ready page:load", ->
    jQuery ->
      if $('.spanner').length > 0
        CompanyPoller.poll()
+
+
+
+
+
   # $(".searchy input").focus ->
   #   $(".space").addClass("spacefocus") && $(".fa").addClass("iconfocus")
   #

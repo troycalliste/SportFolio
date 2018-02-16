@@ -38,6 +38,7 @@ gem 'whenever', require: false
 # gem 'bcrypt', '~> 3.1.7'
 # gem 'httparty'
 gem 'delayed_job_active_record'
+gem 'delayed_job_recurring'
 
 gem 'rest-client', '~> 1.8'
 gem 'devise'

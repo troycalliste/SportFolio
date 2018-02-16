@@ -42,8 +42,8 @@ class CompaniesController < ApplicationController
   # PATCH/PUT /companies/1.json
   def update
     @company = Company.update(company_params)
-    $redis.publish('companies.update', @company.to_json)
-    render :action => 'show'
+    # $redis.publish('companies.update', @company.to_json)
+    # render :action => 'show'
   end
   #
   def events
@@ -108,6 +108,6 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:change)
+      params.require(:company).permit(:change, :changepercent, :name, :ticker)
     end
 end

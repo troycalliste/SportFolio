@@ -12,13 +12,13 @@ class StaticpagesController < ApplicationController
     @companies = Company.all
     @bigcomp = @companies.order('changepercent DESC').limit(20)
     @company = Company.first
+    @company.delay.updatecurrentandvol
     @company.delay.updatechanges
 
   end
 
   def help
     @companies = Company.all
-    @test = @companies.find_each(batch_size: 10)
   end
 
   def tour
