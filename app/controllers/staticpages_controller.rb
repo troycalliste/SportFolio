@@ -14,7 +14,6 @@ class StaticpagesController < ApplicationController
     @company = Company.first
     @company.delay.updatecurrentandvol
     @company.delay.updatechanges
-
   end
 
   def help

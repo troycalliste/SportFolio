@@ -5,12 +5,83 @@
       <%= csrf_meta_tags %>
 
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= stylesheet_link_tag    'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
       <link href="https://fonts.googleapis.com/css?family=Rokkitt|Vollkorn" rel="stylesheet">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   </head>
+<header>
+  <div class="contain">
+    <div class="fade">
+       <div class="userbox">
+         <div class="userlast">
+           <div class="ava"><%= image_tag @user.avatar.url(:thumb) %></div>
+           <div class="usersname"><%= @user.email %></div>
+           <div class="lastonline"><%= "Last Online: #{@user.last_seen}" %></div>
+        </div>
+        <ul class="usernavs">
+                <li><%= link_to "Overview" %></li>
+                <li><%= link_to "Longs" %></li>
+                <li><%= link_to "Shorts" %></li>
+                <li><%= link_to "Friends" %></li>
+        </ul>
+        <div class="lowerbox">
+          <ul class="lowerselect">
+          <li><div class="datechoice">Period</div><div class="dateselect"><%= select_tag(:city_id, options_for_select([['Lisbon', 1], ['Madrid', 2]])) %></div></li>
+          <li><div class="region">Region</div><div class="regselect"><%= select_tag(:city_id, options_for_select([['Lisbon', 1], ['Madrid', 2]])) %></div></li>
+          <li><div class="exchange">Exchange</div><div class="exselect"><%= select_tag(:city_id, options_for_select([['Lisbon', 1], ['Madrid', 2]])) %></div></li>
+         </ul>
+        </div>
+        <ul class="longsover">
+          <li class="onee"><div class="longover">Longs</div><div class="longsval">#</div></li>
+          <li><div class="rateover">Rating</div><div class="ratingval">#</div></li>
+          <li><div class="profitover">Profit</div><div class="profitval">#</div></li>
+          <li><div class="percentover">Percent Long</div><div class="percentval">#</div></li>
+          <li><div class="numover">Stocks Long</div><div class="numval">#</div></li>
+          </ul>
+          <div class="recenttrades">
+             <div class="cardheader">Recent Trades <span class="track">live tracker</span></div>
 
+         </div>
+        </div>
+
+
+     </div>
+   </div>
+
+
+    <div class="main">
+      <div class="logo">
+      <%= link_to "SportFolio", root_path, id: "homelogo" %>
+      </div>
+        <div class="signup">
+          <% if user_signed_in? %>
+            Loggin in as
+          <% else %>
+            <%= link_to "Sign up", new_user_registration_path %>
+            <%= link_to "Login", new_user_session_path %>
+          <% end %>
+        </div>
+        <ul class="nav-items">
+                <li><%= link_to "COMPANIES" %></li>
+                <li><%= link_to "NEWS" %></li>
+                <li><%= link_to "COMMUNITY" %></li>
+                <li><%= link_to "SECTORS" %></li>
+                <li class="search">
+                  <div class="space">
+                    <%= form_with url: '/search', method: :get, local: true, class: "searchy" do |f| %>
+                    <%= f.text_field :q, id: :q %>
+                    <button style='width:40px;'>
+                       <i class="icon-share-alt icon-white"></i>
+                      </button>
+                    <% end %>
+                  </div>
+                <li>
+        </ul>
+    </div>
+</header>
   <body>
     <%= yield %>
   </body>

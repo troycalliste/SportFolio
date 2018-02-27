@@ -13,3 +13,22 @@
  *= require_tree .
  *= require_self
  */
+
+
+ .container {
+   margin: 0;
+   padding: 0;
+   font-family: arial, serif;
+   // background-image: url("8647.jpg");
+   background-image: url("backgrnd.jpg");
+   background-size: 1470px 780px;
+
+   // padding-bottom: 1700px;
+   // height: 550px;
+   background-repeat: no-repeat;
+   // background-attachment: fixed;
+
+   background-position: 0px -250px;
+
+
+ }

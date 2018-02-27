@@ -1,0 +1,288 @@
+body {
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+  overflow-x: hidden;
+}
+
+.contain {
+  margin: 0;
+  padding: 0;
+  font-family: arial, serif;
+  background-image: url("darker.jpg");
+  background-size: cover;
+  height: 900px;
+  background-attachment: fixed;
+
+
+  background-repeat: no-repeat;
+  // background-attachment: fixed;
+
+  background-position: 0px -250px;
+
+ display: block;
+
+}
+.fade {
+  height: 400px;
+  width: 100%;
+ background: linear-gradient(to bottom, rgba(0.5,0.5,0.5,0.65), rgba(0,0,0,0.65), rgba(0,0,0,0.55), rgba(0,.4,.7,1));
+ background-size: cover;
+ position: absolute;
+ margin-top: 0px;
+display: block;
+background-attachment: fixed;
+}
+
+.userbox {
+  background-color: rgba(66,66,66,1);
+  height: 110px;
+  width: 1110px;
+  // padding-left: 300px;
+  margin: auto;
+  margin-top: 100px;
+
+  display: block;
+  // padding-top: 10px;
+}
+
+.userlast {
+  background-color: red;
+  // white-space: nowrap;
+  height: 70px;
+  position: relative;
+}
+.usersname {
+  margin-top: 23px;
+  margin-left: 0px;
+  padding-right: 5px;
+  color: white;
+  font-size: 30px;
+  font-family: 'Roboto', sans-serif;
+  background-color: blue;
+  // width: 30%;
+  display:inline-block;
+
+}
+.lastonline {
+  color: white;
+  font-size: 10px;
+  background-color: green;
+  display:inline-block;
+}
+.ava img {
+  width: 50px;
+
+  height: 50px;
+  position: relative;
+
+}
+.ava  {
+  padding-top: 5px;
+  padding-left: 5px;
+  margin-right: 0px;
+  // width: 10%;
+  float: left;   //eremember div always covers  so if you want something on the same level  you'll have to float it right
+}
+
+.usernavs {
+  float: left;
+  // padding-right: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin: 20px 0px 0px 0px;
+}
+.usernavs ul {
+ padding-left: 0px;
+ padding-right: 0px;
+ margin: 0px;
+}
+.usernavs li {
+  display: inline-block;
+  border: 1px solid white;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin: 0px 0px 0px 0px;
+  position: relative;
+  float: left;
+}
+.lowerbox {
+  background-color: darkblue;
+  height: 80px;
+  width: 1110px;
+  // padding-left: 300px;
+  margin: auto;
+  margin-top: 50px;
+  display: block;
+  // padding-top: 10px;
+}
+.lowerselect {
+  list-style-type: none;
+  padding-left: 0px;
+  background-color: white;
+}
+
+.lowerselect li {
+  background: pink;
+  width: 150px;
+  float: left;
+  border: 1px solid red;
+}
+.datechoice {
+padding: 10px;
+}
+.region{
+padding: 10px;
+}
+.exchange {
+padding: 10px;
+}
+.dateselect select {
+  font-size: 20px;
+}
+.regselect select {
+  font-size: 20px;
+}
+.exselect select {
+  font-size: 20px;
+}
+.longsover {
+  background-color: darkblue;
+  list-style-type: none;
+  height: 80px;
+  width: 700px;
+  // padding-left: 300px;
+  margin-top: 10px;
+  display: inline-block;
+  padding-top: 0px;
+  margin-left: 0px;
+  padding-left: 5px;
+}
+
+.longsover li {
+  background: pink;
+  width: 130px;
+  float: left;
+  border: 1px solid red;
+}
+.recenttrades {
+  background-color: darkblue;
+  height: 200px;
+  width: 400px;
+  // padding-left: 300px;
+  margin-top: 10px;
+  display: inline-block;
+  padding-top: 10px;
+  float: right;
+  display: inline-block;
+  clear: both;
+  margin-left: auto;
+}
+.onee {
+  padding-top: 20px;
+}
+.longover {
+  font-size: 20px;
+}
+.cardheader {
+  color: white;
+}
+.track {
+  float: right;
+}
+
+
+.lower {
+  height: 1000px;
+  width: 100%;
+ color: white;
+  background-color: black;
+ position: absolute;
+ background-attachment: fixed;
+}
+.lower a {
+  color: white;
+}
+
+
+
+ // style for nav bar
+.main {
+  top: 0;
+  width: 100%;
+  margin-top: 0;
+ // background: white;
+   color: red;
+//   text-align: center;
+   padding: 0px 0px 10px 0px;
+   position: fixed;
+   z-index: 1;
+   transition: background 1.2s;
+}
+.change {
+    background-color: rgba(0,0,0,0.8);
+}
+.nav-items {
+  float: right;
+  padding-right: 0px;
+  padding-left: 0px;
+  margin: 0px 0px 0px 0px;
+}
+.nav-items li {
+  padding-right: 10px;
+  padding-left: 0px;
+  display: inline-block;
+  padding-top: 1px;
+
+}
+
+// homepage sign up field
+
+.homesignup {
+  margin: auto;
+ // width: 37%;
+
+padding: 180px 1px 200px 420px;
+}
+
+
+.homesignup input {
+    // width: 100%;
+    padding: 13px 30px;
+    // margin: 8px 0;
+    // display: inline-block;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width: 50%;
+    font-size: 1.5em;
+}
+
+.homesignup input:focus {
+ outline:  none;
+ border: 0px solid;
+ border-color: #f99e1a;
+ box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px 1px #f99e1a;
+
+}
+
+
+
+
+
+
+.searchy input {
+ border: none;
+ padding-right: 10px;
+ height: 24px;
+}
+.searchy input:focus {
+outline: none;
+z-index: -1;
+}
+.searchy input:hover {
+
+}
+.search {
+  position: relative;
+}

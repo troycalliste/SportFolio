@@ -1,4 +1,14 @@
-<p id="notice"><%= notice %></p>
+
+<div class="lower">
+  <p id="notice"><%= notice %></p>
+<p><%= @user.email %></p>
+<p><%= @user.last_seen %></p>
+
+<% if @user == current_user %>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+<%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
+<% end %>
+
+<div>

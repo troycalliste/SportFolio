@@ -14,7 +14,7 @@ body {
   background-size: 1470px 780px;
 
   // padding-bottom: 1700px;
-  height: 550px;
+  // height: 550px;
   background-repeat: no-repeat;
   // background-attachment: fixed;
 
@@ -41,19 +41,19 @@ body {
 .change {
     background-color: rgba(0,0,0,0.8);
 }
-.nav-items {
-  float: right;
-  padding-right: 0px;
-  padding-left: 0px;
-  margin: 0px 0px 0px 0px;
-}
-.nav-items li {
-  padding-right: 10px;
-  padding-left: 0px;
-  display: inline-block;
-  padding-top: 1px;
-
-}
+// .nav-items {
+//   float: right;
+//   padding-right: 0px;
+//   padding-left: 0px;
+//   margin: 0px 0px 0px 0px;
+// }
+// .nav-items li {
+//   padding-right: 10px;
+//   padding-left: 0px;
+//   display: inline-block;
+//   padding-top: 1px;
+//
+// }
 
 // homepage sign up field
 
@@ -310,4 +310,55 @@ span .change-price {
 .usersignup {
   padding-top: 200px;
   padding-left: 700px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mid {
+  background-color: black;
+  height: 500px;
+  width: 1500px;
+  margin-top: 0px;
+  position: absolute;
+}
+.activetrade {
+  background-color: #212121;
+  height: 92px;
+  width: 293px;
+  // padding-left: 300px;
+  margin-left: 690px;
+  margin-top: 30px;
+  // padding-top: 10px;
+  position: absolute;
+}
+.onlinenow {
+  background-color: #242527;
+  box-shadow: 0 1px 3px rgba(0,0,0,.2);
+  height: 32px;
+  width: cover;
+  position: absolute;
+
+}
+#tradersnow {
+  color: white;
+  margin-left: 80px;
+  margin-top: 8px;
+  font-size: 14px;
+  position: relative;
 }

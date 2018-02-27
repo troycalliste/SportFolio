@@ -10,8 +10,8 @@
               <% if user_signed_in? %>
                 Loggin in as
               <% else %>
-                <%= link_to "Sign up", new_user_path %>
-                <%= link_to "Login" %>
+                <%= link_to "Sign up", new_user_registration_path %>
+                <%= link_to "Login", new_user_session_path %>
               <% end %>
             </div>
             <ul class="nav-items">
@@ -43,7 +43,18 @@
   </header>
 
 
+ <div class="mid">
+   <div class="activetrade">
 
+     <div class="onlinenow">
+        <div id="tradersnow">
+          TRADERS ONLINE
+        </div>
+
+     </div>
+   </div>
+
+ </div>
 
 
   <!-- sign up partial -->

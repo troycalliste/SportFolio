@@ -35,15 +35,20 @@ gem 'redis', '~> 3.0'
 
 gem 'whenever', require: false
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', require: 'bcrypt' if Gem.win_platform?
 # gem 'httparty'
 gem 'delayed_job_active_record'
 gem 'delayed_job_recurring'
 
 gem 'rest-client', '~> 1.8'
 gem 'devise'
+gem 'devise_lastseenable'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'gravtastic'
+
+gem 'carrierwave', '~> 1.0'
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -54,6 +59,8 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
 end
+
+
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
