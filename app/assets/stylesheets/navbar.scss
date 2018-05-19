@@ -146,6 +146,14 @@ padding: 10px;
 .exselect select {
   font-size: 20px;
 }
+
+
+.wrapmid {
+  height: 420px;
+  background: gray;
+  display: inline-block;
+}
+
 .longsover {
   background-color: darkblue;
   list-style-type: none;
@@ -153,10 +161,12 @@ padding: 10px;
   width: 700px;
   // padding-left: 300px;
   margin-top: 10px;
+  margin-bottom: 0px;
   display: inline-block;
   padding-top: 0px;
   margin-left: 0px;
   padding-left: 5px;
+  float: left;
 }
 
 .longsover li {
@@ -165,18 +175,19 @@ padding: 10px;
   float: left;
   border: 1px solid red;
 }
+/////////////////////////////////////////////////////
 .recenttrades {
   background-color: darkblue;
   height: 200px;
   width: 400px;
   // padding-left: 300px;
   margin-top: 10px;
-  display: inline-block;
   padding-top: 10px;
   float: right;
   display: inline-block;
   clear: both;
-  margin-left: auto;
+  margin-bottom: 10px;
+  // margin-left: auto;
 }
 .onee {
   padding-top: 20px;
@@ -190,6 +201,75 @@ padding: 10px;
 .track {
   float: right;
 }
+.result {
+  color: white;
+  display: inline-block;
+  padding: 0px;
+  margin: 0px;
+  list-style-type: none;
+
+}
+.result li {
+  line-height: 90%;
+  height: 50px;
+  width: 95px;
+  float: left;
+  border: 1px solid red;
+}
+.title {
+ font-size: 10px;
+}
+.lss {
+ font-size: 20px;
+}
+
+.careerstats {
+  height: 190px;
+  width: 400px;
+  background: red;
+  float: right;
+  display: inline-block;
+  position: relative;
+  margin-left: 0px;
+}
+///////////////////////////////////////////////////////////
+
+.careertrades {
+    display: inline-block;
+      list-style-type: none;
+}
+.careertrades li {
+
+  background: pink;
+  width: 100px;
+  float: left;
+  border: 1px solid red;
+
+}
+.orangetrending {
+  margin-top: 10px;
+  height: 200px;
+  width: 700px;
+  background: orange;
+  display: inline-block;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .lower {

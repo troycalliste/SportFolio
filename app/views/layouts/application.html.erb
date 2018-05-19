@@ -29,23 +29,101 @@
         </ul>
         <div class="lowerbox">
           <ul class="lowerselect">
-          <li><div class="datechoice">Period</div><div class="dateselect"><%= select_tag(:city_id, options_for_select([['Lisbon', 1], ['Madrid', 2]])) %></div></li>
-          <li><div class="region">Region</div><div class="regselect"><%= select_tag(:city_id, options_for_select([['Lisbon', 1], ['Madrid', 2]])) %></div></li>
-          <li><div class="exchange">Exchange</div><div class="exselect"><%= select_tag(:city_id, options_for_select([['Lisbon', 1], ['Madrid', 2]])) %></div></li>
-         </ul>
-        </div>
-        <ul class="longsover">
-          <li class="onee"><div class="longover">Longs</div><div class="longsval">#</div></li>
-          <li><div class="rateover">Rating</div><div class="ratingval">#</div></li>
-          <li><div class="profitover">Profit</div><div class="profitval">#</div></li>
-          <li><div class="percentover">Percent Long</div><div class="percentval">#</div></li>
-          <li><div class="numover">Stocks Long</div><div class="numval">#</div></li>
-          </ul>
-          <div class="recenttrades">
-             <div class="cardheader">Recent Trades <span class="track">live tracker</span></div>
+          <li><div class="region">Region</div><div class="regselect"><%= select_tag 'user_id', options_for_select(@reg.collect{ |u| [u.name] }) %></div></li>
+          <li><div class="region">Exchange</div><div class="regselect"><%= select_tag 'user_id', options_for_select(@exch.collect{ |u| [u.name] }) %></div></li>
 
-         </div>
+          <li>
+
+
+
+            <%= form_with url: user_trades_path(@user), method: :get, local: true do |form| %>
+
+              <%= select_tag(:term, options_for_select([['2018', 1], ['2017', 2]])) %>
+
+              <%= form.submit %>
+            </li>
+
+
+         </ul>
+         <!-- <%= @regs.each {|i| i.id} %> -->
         </div>
+      <div class="wrapmid">
+
+
+
+
+        <div class="recenttrades">
+           <div class="cardheader">Recent Trades <span class="track">live tracker</span></div>
+           <% @user.trades.limit(3).each do |t| %>
+           <ul class="result">
+             <li><span class="lss"><%= t.tradetype %></span><br><span class="title"><%= t.created_at%></span></li>
+             <li>Stock <br><%= t.stock %></li>
+             <li>Volume <br><%= t.volume %></li>
+             <li>Price <br><%= t.stockprice %></li>
+           </ul>
+           <% end %>
+
+
+            <% end %>
+       </div>
+
+
+
+
+
+
+
+        <ul class="longsover">
+           <li class="onee"><div class="longover">Longs</div><div class="longsval">#</div></li>
+           <li><div class="rateover">Rating</div><div class="ratingval">#</div></li>
+           <li><div class="profitover">Profit</div><div class="profitval">#</div></li>
+           <li><div class="percentover">Percent Long</div><div class="percentval">#</div></li>
+           <li><div class="numover">Stocks Long</div><div class="numval">#</div></li>
+        </ul>
+        <ul class="longsover">
+            <li class="onee"><div class="longover">Short</div><div class="longsval">#</div></li>
+            <li><div class="rateover">Rating</div><div class="ratingval">#</div></li>
+            <li><div class="profitover">Profit</div><div class="profitval">#</div></li>
+            <li><div class="percentover">Percent Short</div><div class="percentval">#</div></li>
+            <li><div class="numover">Stocks Shorts</div><div class="numval">#</div></li>
+        </ul>
+        <ul class="longsover">
+              <li class="onee"><div class="longover">Other Comm.</div><div class="longsval">#</div></li>
+              <li><div class="rateover">Rating</div><div class="ratingval">#</div></li>
+              <li><div class="profitover">Profit</div><div class="profitval">#</div></li>
+              <li><div class="percentover">Percent in Commodities</div><div class="percentval">#</div></li>
+              <li><div class="numover">Commodities</div><div class="numval">#</div></li>
+        </ul>
+
+
+
+
+
+                        <div class="careerstats">Career Stats
+                          <ul class="careertrades">
+                            <li>Trades Made <br> <%= @user.trades.count %></li>
+                            <li>Currently Up</li>
+                            <li>Currently Down</li>
+                          </ul>
+                          <ul class="careertrades">
+                            <li>Companies Held <%= @user.trades.select(:stock).map(&:stock).uniq.count %></li>
+                            <li>Largest Trade</li>
+                            <li>Profit</li>
+                          </ul>
+                        </div>
+
+
+                        <div class="orangetrending">
+
+                      </div>
+
+
+
+
+
+
+          </div>
+      </div>
 
 
      </div>
@@ -81,6 +159,7 @@
                 <li>
         </ul>
     </div>
+</div>
 </header>
   <body>
     <%= yield %>

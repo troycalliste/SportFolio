@@ -3,13 +3,28 @@ class TradesController < ApplicationController
 
   # GET /trades
   # GET /trades.json
+
   def index
-    @trades = Trade.all
+     @user = User.find(params[:user_id])
+     @trades = if params[:term]
+      @user.trades.where('region_id LIKE ?', "%#{params[:term]}%")
+    else
+       Trade.all
+    end
+     @reg = Region.all
+     @regs= Trade.all.where(region_id: params[:id])
+
+
   end
 
+
+
   # GET /trades/1
-  # GET /trades/1.json
+  # GET /trades/1.json\
   def show
+    @user = User.find(params[:id])
+    @reg = Region.all
+    @regs= Trade.all.where(region_id: params[:id])
   end
 
   # GET /trades/new

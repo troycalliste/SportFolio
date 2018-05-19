@@ -12,6 +12,10 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @reg = Region.all
+    @regs= Trade.all.where(region_id: params[:id])
+    @exch = Exchange.all
+     # Company.first.delay.updatecurrentandvol
   end
 
   # GET /users/new
