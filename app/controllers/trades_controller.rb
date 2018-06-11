@@ -25,6 +25,9 @@ class TradesController < ApplicationController
     @user = User.find(params[:id])
     @reg = Region.all
     @regs= Trade.all.where(region_id: params[:id])
+
+
+
   end
 
   # GET /trades/new

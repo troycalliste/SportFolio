@@ -12,10 +12,14 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+
     @reg = Region.all
-    @regs= Trade.all.where(region_id: params[:id])
+
     @exch = Exchange.all
      # Company.first.delay.updatecurrentandvol
+
+     @trades = Trade.where(nil) # creates an anonymous scope
+     @trades = @trades.region_id(params[:region_id]) if params[:region_id].present?
   end
 
   # GET /users/new
