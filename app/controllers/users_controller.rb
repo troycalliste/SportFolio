@@ -20,6 +20,8 @@ class UsersController < ApplicationController
 
      @trades = Trade.where(nil) # creates an anonymous scope
      @trades = @trades.region_id(params[:region_id]) if params[:region_id].present?
+     @tradelongs = @trades.where(tradetype: "Long")
+     @tradeshorts = @trades.where(tradetype: "Short")
   end
 
   # GET /users/new
@@ -79,7 +81,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:id, :email, :avatar, :password)
+      params.require(:user).permit(:id, :email, :avatar, :password, trades_attributes: [:id, :stock, :volume, :user_id, :region_id, :tradetype, :stockprice])
     # dont vhange this or server will stall
     end
 end

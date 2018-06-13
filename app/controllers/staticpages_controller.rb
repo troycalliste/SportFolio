@@ -13,7 +13,7 @@ class StaticpagesController < ApplicationController
     @bigcomp = @companies.order('changepercent DESC').limit(20)
     @company = Company.first
     @company.delay.updatecurrentandvol
-    @company.delay.updatechanges
+    # @company.delay.updatechanges
   end
 
   def help

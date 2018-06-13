@@ -87,6 +87,6 @@ class TradesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trade_params
-      params.fetch(:trade, {})
+      params.require(:trade).permit(:id, :stock, :volume, :user_id, :region_id, :tradetype, :stockprice)
     end
 end
