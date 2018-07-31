@@ -1,3 +1,4 @@
+# encoding: utf-8
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
@@ -12,18 +13,16 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-
     @reg = Region.all
-
     @exch = Exchange.all
-     # Company.first.delay.updatecurrentandvol
+    @comp = Company.all
+    @camp = Company.all.pluck(:currentprice)
 
      @trades = Trade.where(nil) # creates an anonymous scope
      @trades = @trades.region_id(params[:region_id]) if params[:region_id].present?
      @tradelongs = @trades.where(tradetype: "Long")
      @tradeshorts = @trades.where(tradetype: "Short")
-  end
-
+   end
   # GET /users/new
   def new
     @user = User.new
@@ -84,4 +83,4 @@ class UsersController < ApplicationController
       params.require(:user).permit(:id, :email, :avatar, :password, trades_attributes: [:id, :stock, :volume, :user_id, :region_id, :tradetype, :stockprice])
     # dont vhange this or server will stall
     end
-end
+ end

@@ -1,0 +1,3 @@
+<% @user.trades.find(30) do |t| %>
+<%= t.stockprice * t.volume %>
+<% end  %>

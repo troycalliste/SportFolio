@@ -1,11 +1,15 @@
 <%= simple_form_for @user do |b| %>
+
   <%= b.simple_fields_for(:trades, @user.trades.build) do |p| %>
-    <%= p.input :stock %>
-    <%= p.input :stockprice %>
-    <%= p.input :region_id %>
+    <%= p.input :stock, collection: @comp %>
+    <%= p.input :stockprice, label: "something", collection: @camp %>
+    <%= p.input :region_id, collection: @reg %>
     <%= p.input :tradetype %>
     <%= p.input :volume %>
     <br>
     <%= p.button :submit %>
   <% end %>
 <% end %>
+
+
+<%=  select("post", "person_id", Company.all.collect {|p| [ p.id, p.id ] }, { include_blank: true })%>

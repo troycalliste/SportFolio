@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180519135146) do
+ActiveRecord::Schema.define(version: 20180731045202) do
 
   create_table "companies", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -22,6 +22,11 @@ ActiveRecord::Schema.define(version: 20180519135146) do
     t.string "name"
     t.decimal "currentprice"
     t.integer "volume"
+  end
+
+  create_table "companies_trades", id: false, force: :cascade do |t|
+    t.integer "company_id", null: false
+    t.integer "trade_id", null: false
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -52,6 +57,11 @@ ActiveRecord::Schema.define(version: 20180519135146) do
     t.string "name"
   end
 
+  create_table "tickets", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "trades", force: :cascade do |t|
     t.string "stock"
     t.integer "volume"
@@ -63,6 +73,7 @@ ActiveRecord::Schema.define(version: 20180519135146) do
     t.integer "region_id"
     t.decimal "tradeprice"
     t.decimal "currentprice"
+    t.integer "company_id"
     t.index ["user_id"], name: "index_trades_on_user_id"
   end
 

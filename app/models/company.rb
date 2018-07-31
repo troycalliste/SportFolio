@@ -2,7 +2,7 @@ require 'rest-client'
 require 'json'
 # Refresh the cached action_methods when a new action_method is added.
 class Company < ApplicationRecord
- has_many :trades
+ has_and_belongs_to_many :trades
 
  def chngepercntges
 

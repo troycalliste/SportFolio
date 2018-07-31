@@ -3,7 +3,7 @@
      <div class="userbox">
        <div class="userlast">
          <div class="ava"><%= image_tag @user.avatar.url(:thumb) %></div>
-         <div class="usersname"><%= @user.email %></div>
+         <div class="usersname"> <%= @user.email %> </div>
          <div class="lastonline"><%= "Last Online: #{@user.last_seen}" %></div>
       </div>
       <ul class="usernavs">
@@ -26,10 +26,16 @@
 
             <%= select_tag(:term, options_for_select([['2018', 1], ['2017', 2]])) %>
 
-            <%= form.submit %>
-          </li>
-                   <% end %>
+           <% form.submit %>
+           <% end %>
 
+
+
+
+
+
+          </li>
+                  
        </ul>
 
       </div>
@@ -44,7 +50,7 @@
 
 <% if @user == current_user %>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Edit', edit_user_path(@user) %>
 <%= link_to 'Back', users_path %>
 <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
 <% end %>
@@ -54,6 +60,8 @@
 <% end %>
 
 <%= render "thetrade" %>
+<%= render "thestage" %>
+<%= link_to 'Edit' %>
 
 
 
