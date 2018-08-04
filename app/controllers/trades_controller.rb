@@ -12,7 +12,7 @@ class TradesController < ApplicationController
        Trade.all
     end
      @reg = Region.all
-     @regs= Trade.all.where(region_id: params[:id])
+     @regs = Trade.all.where(region_id: params[:id])
 
 
   end
@@ -22,6 +22,8 @@ class TradesController < ApplicationController
   # GET /trades/1
   # GET /trades/1.json\
   def show
+    @trade = Trade.order("id DESC").offset(1).first
+    @company = Company.find(@trade.company_id)
     @user = User.find(params[:id])
     @reg = Region.all
     @regs= Trade.all.where(region_id: params[:id])
@@ -44,9 +46,10 @@ class TradesController < ApplicationController
   def create
     @trade = Trade.new(trade_params)
 
+
     respond_to do |format|
       if @trade.save
-        format.html { redirect_to @trade, notice: 'Trade was successfully created.' }
+        format.html { redirect_to "http://localhost:3000/users/19/trades/#{@trade.id}", notice: 'Trade was successfully created.' }
         format.json { render :show, status: :created, location: @trade }
       else
         format.html { render :new }
@@ -87,6 +90,6 @@ class TradesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trade_params
-      params.require(:trade).permit(:id, :stock, :volume, :user_id, :region_id, :tradetype, :stockprice)
+      params.require(:trade).permit(:id, :stock, :volume, :user_id, :region_id, :tradetype, :stockprice, :one, :company_id)
     end
 end

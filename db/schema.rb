@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180731045202) do
+ActiveRecord::Schema.define(version: 20180802050924) do
 
   create_table "companies", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -74,6 +74,8 @@ ActiveRecord::Schema.define(version: 20180731045202) do
     t.decimal "tradeprice"
     t.decimal "currentprice"
     t.integer "company_id"
+    t.string "one"
+    t.index ["company_id"], name: "trade_company_id"
     t.index ["user_id"], name: "index_trades_on_user_id"
   end
 

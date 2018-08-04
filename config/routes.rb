@@ -21,10 +21,14 @@ Rails.application.routes.draw do
   get 'staticpages/about'
 
   get 'static/pages'
+  get 'users/preview'
+  get 'users/revise'
 
   resources :users do
     resources :trades
   end
+  resources :trades
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

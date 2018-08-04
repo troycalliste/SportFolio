@@ -1,13 +1,15 @@
 <%= simple_form_for @user do |b| %>
 
+
   <%= b.simple_fields_for(:trades, @user.trades.build) do |p| %>
     <%= p.input :stock, collection: @comp %>
-    <%= p.input :stockprice, label: "something", collection: @camp %>
+    <%= p.input :company_id %>
     <%= p.input :region_id, collection: @reg %>
     <%= p.input :tradetype %>
     <%= p.input :volume %>
-    <br>
-    <%= p.button :submit %>
+    <%= p.submit "Create"%>
+    <%= p.submit "Review Trade", name: "preview_button" %>
+    
   <% end %>
 <% end %>
 

@@ -5,6 +5,9 @@
          <div class="ava"><%= image_tag @user.avatar.url(:thumb) %></div>
          <div class="usersname"> <%= @user.email %> </div>
          <div class="lastonline"><%= "Last Online: #{@user.last_seen}" %></div>
+         <% @trade.where.not(company_id: nil).each do |f| %>
+         <% f.currentprices %>
+         <% end  %>
       </div>
       <ul class="usernavs">
               <li><%= link_to "Overview" %></li>
@@ -35,7 +38,7 @@
 
 
           </li>
-                  
+
        </ul>
 
       </div>

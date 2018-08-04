@@ -68,6 +68,8 @@ class Company < ApplicationRecord
    c.save
    puts c.ticker
    end
+
+
   end
 
 end

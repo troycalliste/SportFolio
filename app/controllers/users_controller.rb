@@ -22,6 +22,10 @@ class UsersController < ApplicationController
      @trades = @trades.region_id(params[:region_id]) if params[:region_id].present?
      @tradelongs = @trades.where(tradetype: "Long")
      @tradeshorts = @trades.where(tradetype: "Short")
+     @trade = Trade.where(user_id: params[:id])
+     @trade.first.tradeprices
+     @comptrade = @trade.first      #we're talking about trade 2
+    
    end
   # GET /users/new
   def new
@@ -41,7 +45,9 @@ class UsersController < ApplicationController
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
-      else
+      elsif params[:preview_button]
+        format.html { render :new }
+      elsif !@user.save
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -50,18 +56,34 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
-  def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  def updates
+    @user     # @trade = Trade.where(user_id: params[:id])
+    @user.update(user_params)
+    @tradeone = @user.trades.last
+    @company = Company.find(@tradeone.company_id)
+    @tradeone.stockprice = @company.currentprice
+    @tradeone.tradeprices
+    @tradeone.save
 
+    render :action => "preview"
+    #im going to set one to two from here
+    # respond_to do |format|
+    #   if @user.update(user_params)
+    #     format.html { redirect_to :action => "show", :controller => "trades"}
+    #     format.json { render :show, status: :ok, location: @user }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @user.errors, status: :unprocessable_entity }
+    #   end
+    # end
+  end
+  def revise
+    #delete it here
+    @user = User.order(:updated_at).last
+    @user.trades.last.destroy
+    @user.save               #at this point it updates user
+    redirect_back fallback_location: { action: "show", id: 18 }
+  end
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
@@ -70,6 +92,9 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  def preview
+
   end
 
   private
@@ -80,7 +105,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:id, :email, :avatar, :password, trades_attributes: [:id, :stock, :volume, :user_id, :region_id, :tradetype, :stockprice])
+      params.require(:user).permit(:id, :email, :avatar, :password, trades_attributes: [:id, :stock, :volume, :user_id, :region_id, :tradetype, :stockprice, :one, :company_id])
     # dont vhange this or server will stall
     end
  end

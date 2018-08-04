@@ -1,4 +1,8 @@
 <p id="notice"><%= notice %></p>
+<%= "Are you sure you are okay with#{@company.ticker}'s stockprice of $#{@trade.stockprice}"  %>
+<%= "For a total price of: #{@trade.tradeprice}"  %>
+<%= link_to "Finalize "%> <%= link_to "Edit Trade"%>
 
-<%= link_to 'Edit', edit_trade_path(@trade) %> |
-<%= link_to 'Back', trades_path %>
+
+<%= link_to 'Edit', edit_user_trade_path(@trade) %> |
+<%= link_to 'Back' %>
