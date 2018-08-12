@@ -1,13 +1,29 @@
 Rails.application.routes.draw do
-  devise_for :users
+
+
+
+
+
+
+
+  devise_for :users, controllers: { sessions: "devise/sessions", omniauth_callbacks: 'omniauth_callbacks' }
+  get 'auth/:provider/callback', to: 'devise/sessions#create'
+  authenticated :user do
+  root 'staticpages#home', as: 'authenticated_root'
+  end
+
+  devise_scope :user do
+  get '/users/sign_out' => 'devise/sessions#destroy'
+  root 'devise/sessions#new'
+  end
+
 
   resources :companies do
     collection do
       get 'events'
     end
   end
-  root 'staticpages#home'
-  #
+
   # post 'companies/publish', to: "companies#pub"
   #
   # get 'companies/subscribe', to: "companies#sub"

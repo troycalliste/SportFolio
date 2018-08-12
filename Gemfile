@@ -12,6 +12,7 @@ gem 'rails', '~> 5.1.4'
 gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
+# gem 'thin'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -31,7 +32,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'openssl'
 # gem 'intrinio-realtime'
 gem 'thread'
-gem 'redis', '~> 3.0'
+# gem 'redis', '~> 3.0'
 
 gem 'whenever', require: false
 # Use ActiveModel has_secure_password
@@ -51,6 +52,15 @@ gem 'simple_form'
 
 gem 'carrierwave', '~> 1.0'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+
+# User Authentication with Facebook
+gem 'omniauth-facebook'
+# Development ENV Variables
+gem 'figaro'
+
+gem 'omniauth-google-oauth2', '~> 0.4.1'
+gem 'google-api-client', '~> 0.10.3'
+gem 'activerecord-session_store', '~> 1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

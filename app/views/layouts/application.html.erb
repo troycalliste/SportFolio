@@ -2,7 +2,8 @@
 <html>
   <head>
     <title>Sportfolio | Invest Your Way To The Top</title>
-      <%= csrf_meta_tags %>
+    <meta name="google-signin-client_id" content="899398509238-dhm6u9t187ft9gvup3j64t8oae3sfa3e.apps.googleusercontent.com">
+    <% csrf_meta_tags %>
 
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
         <%= stylesheet_link_tag    'navbar', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -21,11 +22,14 @@
       </div>
         <div class="signup">
           <% if user_signed_in? %>
-            Loggin in as
+          <%= link_to "Edit profile", edit_user_registration_path %> |
+          <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
           <% else %>
-            <%= link_to "Sign up", new_user_registration_path %>
-            <%= link_to "Login", new_user_session_path %>
+           <%= link_to "Sign up", new_user_registration_path  %> |
+           <%= link_to "Login", new_user_session_path  %>
           <% end %>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
         </div>
         <ul class="nav-items">
                 <li><%= link_to "COMPANIES" %></li>

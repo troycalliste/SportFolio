@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -6,8 +8,8 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '9518e60c60a6bebf6de33e191b7e70c601a0d1284bc6577cc8c90aedc3efd8d49af7206b68e1b590c57775c93dc8f63981d84ba4f28a6af54e14a6d31b787f88'
-  config.secret_key = 'cfc6a2c9ada264a83508dba123995743e3d5441f024dee24cc591ed3c6be623bb7f86257f02689b98e11b7f56d7385b170134220b3720d05190aba3b0a7aed69'
+  # config.secret_key = 'cab7a32759d3aa1a9bd9488ebc06cce7134de66713ee46794924c7848d0ad6d8bfa1009eaf315b779c9a2d891541fd95f0174364b7605a09b1680aa483dcf8f7'
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
@@ -108,7 +110,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'c967e741f44e91d6ab1ccb315b07f4ef33d24dfe5ecea47fb436d63d4d9e4e74599d8b3c1e047e06fbfad17a8a08f7cd55e273219e16a8b57a9b366604f0db45'
+  # config.pepper = 'd73330dde95c1581c826f4fc45454d0b8a6913ee608c1341d04d05ba3de3fc20929738b97d4f79a3bad220ff437827921b0ee2596fe61310a21e2488c28fa837'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -274,4 +276,14 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
+  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], scope: 'email'
+  # client_id = Rails.application.secrets[:client_id]
+  # client_secret = Rails.application.secrets[:client_secret]
+  #
+  # config.omniauth :google_oauth2, client_id, client_secret, scope: 'email', provider_ignores_state: true
+  # refresh_token = User.where(provider: auth.provider, uid: auth.uid).first.refresh_token
+  config.omniauth :google_oauth2, ENV['GOOGLE_ID'], ENV['GOOGLE_SECRET'], {scope: 'email', provider_ignores_state: true, access_type: 'offline'}
+
+
+
 end
