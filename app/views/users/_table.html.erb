@@ -24,23 +24,24 @@
   <ul class="longsover">
      <li class="onee"><div class="longover">Longs</div><div class="longsval"># <%= @tradelongs.count %></div></li>
      <li><div class="rateover">Rating</div><div class="ratingval"># </div></li>
-     <li><div class="profitover">Profit</div><div class="profitval"><%= @user.trades.where(tradetype: "Long").sum(:stockprice) - @user.trades.where(tradetype: "Long").sum(:currentprice) %></div></li>
+     <li><div class="profitover">Profit</div><div class="profitval"><%= @user.trades.where(tradetype: "Long").sum(:currentprice) - @user.trades.where(tradetype: "Long").sum(:stockprice)%></div></li>
      <li><div class="percentover">Percent Long</div><div class="percentval"> <% price = (@user.trades.where(tradetype: "Long").count.to_f / @user.trades.count.to_f) * 100  %><%= number_with_precision(price, :precision => 0) %>%</div></li>
      <li><div class="numover">Stocks Long</div><div class="numval"><%= @user.trades.where(tradetype: "Long").count %></div></li>
   </ul>
   <ul class="longsover">
       <li class="onee"><div class="longover">Short</div><div class="longsval"># <%= @tradeshorts.count %></div></li>
       <li><div class="rateover">Rating</div><div class="ratingval">#</div></li>
-      <li><div class="profitover">Profit</div><div class="profitval">#</div></li>
-      <li><div class="percentover">Percent Short</div><div class="percentval">#</div></li>
-      <li><div class="numover">Stocks Shorts</div><div class="numval">#</div></li>
+      <li><div class="profitover">Profit</div><div class="profitval"><%= @user.trades.where(tradetype: "Short").sum(:stockprice) - @user.trades.where(tradetype: "Short").sum(:currentprice) %></div></li>
+      <li><div class="percentover">Percent Short</div><div class="percentval"><% shrtprice = (@user.trades.where(tradetype: "Short").count.to_f / @user.trades.count.to_f) * 100  %><%= number_with_precision(shrtprice, :precision => 0) %>%</div></li>
+      <li><div class="numover">Stocks Short</div><div class="numval"><%= @user.trades.where(tradetype: "Short").count %></div></li>
   </ul>
   <ul class="longsover">
         <li class="onee"><div class="longover">Other Comm.</div><div class="longsval">#</div></li>
         <li><div class="rateover">Rating</div><div class="ratingval">#</div></li>
-        <li><div class="profitover">Profit</div><div class="profitval">#</div></li>
-        <li><div class="percentover">Percent in Commodities</div><div class="percentval">#</div></li>
-        <li><div class="numover">Commodities</div><div class="numval">#</div></li>
+        <li><div class="profitover">Profit</div><div class="profitval"><%= @user.trades.where.not(commodity_id: nil).sum(:currentprice) - @user.trades.where.not(commodity_id: nil).sum(:stockprice)%></div></li>
+        <li><div class="percentover">Percent in Commodities</div><div class="percentval"><% price = (@user.trades.where.not(commodity_id: nil).count.to_f / @user.trades.count.to_f) * 100  %><%= number_with_precision(price, :precision => 0)%>%</div></li>
+        <li><div class="numover">Commodities</div><div class="numval"><%= @user.trades.where.not(commodity_id: nil).count%></div></li>
+
   </ul>
 
 
@@ -76,6 +77,7 @@
                   <div class="orangetrending">
 
                 </div>
+
 
 
 

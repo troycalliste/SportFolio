@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180810190648) do
+ActiveRecord::Schema.define(version: 20180830162048) do
+
+  create_table "commodities", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+    t.decimal "price"
+    t.integer "volume"
+    t.decimal "currentprice"
+  end
+
+  create_table "commodities_trades", id: false, force: :cascade do |t|
+    t.integer "trade_id", null: false
+    t.integer "commodity_id", null: false
+  end
 
   create_table "companies", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -84,6 +98,8 @@ ActiveRecord::Schema.define(version: 20180810190648) do
     t.decimal "currentprice"
     t.integer "company_id"
     t.string "one"
+    t.integer "commodity_id"
+    t.index ["commodity_id"], name: "trade_commodity_id"
     t.index ["company_id"], name: "trade_company_id"
     t.index ["user_id"], name: "index_trades_on_user_id"
   end
@@ -115,6 +131,7 @@ ActiveRecord::Schema.define(version: 20180810190648) do
     t.integer "expires_at"
     t.boolean "expires"
     t.string "refresh_token"
+    t.decimal "wallet", default: "10000.0"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

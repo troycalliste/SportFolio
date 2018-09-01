@@ -4,11 +4,12 @@
        <div class="userlast">
          <div class="ava"><%= image_tag @user.avatar.url(:thumb) %></div>
          <div class="usersname"> <%= @user.email %> </div>
+         <%= @user.wallet %>
          <div class="lastonline"><%= "Last Online: #{@user.last_seen}" %></div>
-         <% @trade.where.not(company_id: nil).each do |f| %>
+         <% @trade.each do |f| %>
          <% f.currentprices %>
          <% end  %>
-      </div> 
+      </div>
       <ul class="usernavs">
               <li><%= link_to "Overview" %></li>
               <li><%= link_to "Longs" %> </li>

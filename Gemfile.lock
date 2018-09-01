@@ -312,6 +312,7 @@ DEPENDENCIES
   gravtastic
   jbuilder (~> 2.5)
   jquery-rails
+  nokogiri (~> 1.6, >= 1.6.8)
   omniauth-facebook
   omniauth-google-oauth2 (~> 0.4.1)
   openssl
