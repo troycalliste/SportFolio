@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   #
   # get 'companies/subscribe', to: "companies#sub"
 
-  get 'staticpages/home'
+  # get 'staticpages/home'
 
   get 'staticpages/help'
 

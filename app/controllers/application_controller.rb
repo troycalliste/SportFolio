@@ -2,10 +2,12 @@ require 'google/apis/people_v1'
 require 'google/api_client/client_secrets.rb'
 
 class ApplicationController < ActionController::Base
+
   People = Google::Apis::PeopleV1
   before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :null_session
   before_action :authenticate_user!
+  # after_action :user_activity
 
 
   def configure_permitted_parameters
@@ -32,4 +34,10 @@ class ApplicationController < ActionController::Base
     )
     render json: response
   end
+
+  private
+
+    def user_activity
+      current_user.try :touch
+    end
 end

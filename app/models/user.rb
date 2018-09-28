@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  scope :online, -> { where("updated_at > ?", 10.minutes.ago) }
   has_many :trades
   accepts_nested_attributes_for :trades
   devise :database_authenticatable, :registerable,
@@ -21,8 +22,19 @@ class User < ApplicationRecord
     user.expires_at = auth.credentials.expires_at
     user.refresh_token = auth.credentials.refresh_token
     # user.save!
+
    end
   end
+
+
+  def totalprof
+    self.longprofit = self.trades.where(tradetype: "Long").sum(:currentprice) - self.trades.where(tradetype: "Long").sum(:stockprice)
+    self.shortprofit = self.trades.where(tradetype: "Short").sum(:stockprice) - self.trades.where(tradetype: "Short").sum(:currentprice)
+    self.commprofit = self.trades.where.not(commodity_id: nil).sum(:currentprice) - self.trades.where.not(commodity_id: nil).sum(:stockprice)
+     self.totalprofit =   self.longprofit + self.shortprofit + self.commprofit
+     self.save
+  end
+
 
 
 

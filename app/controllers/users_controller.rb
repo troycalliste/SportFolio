@@ -30,9 +30,19 @@ class UsersController < ApplicationController
      @tradelongs = @trades.where(tradetype: "Long")
      @tradeshorts = @trades.where(tradetype: "Short")
      @trade = Trade.where(user_id: params[:id])
-     @trade.first.tradeprices
+     @trade.first.tradeprices   #going to do this for all
+
+     @alltrades = Trade.where.not(volume: nil, stockprice: nil)
+     @alltrades.each do |t|
+       t.tradeprices
+      end
      @comptrade = @trade.first      #we're talking about trade 2
 
+
+   end
+
+   def show_online
+     @users = User.online_now
    end
   # GET /users/new  going back to the first one i think so
   def new
@@ -113,6 +123,7 @@ class UsersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
     def set_user
       @user = User.find(params[:id])
     end

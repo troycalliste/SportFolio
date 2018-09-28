@@ -41,13 +41,21 @@
     </div>
 
   </header>
-
+S
  <div class="mid">
    <div class="activetrade">
 
      <div class="onlinenow">
         <div id="tradersnow">
           TRADERS ONLINE
+          <div>
+
+                 <% User.order("totalprofit DESC").limit(5).each do |u| %>
+                  <%= u.id %>
+                   <% end %>
+
+
+          </div>
         </div>
 
      </div>
@@ -56,12 +64,7 @@
  </div>
 
 
-  <!-- sign up partial -->
 
-
-
-
-  <!-- will put in scrollfeed partial  -->
 
 
 <div class="messagetest">

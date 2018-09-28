@@ -5,7 +5,11 @@
          <div class="ava"><%= image_tag @user.avatar.url(:thumb) %></div>
          <div class="usersname"> <%= @user.email %> </div>
          <%= @user.wallet %>
-         <div class="lastonline"><%= "Last Online: #{@user.last_seen}" %></div>
+         <div class="lastonline"><%= "Last Online: #{@user.last_seen}" %>
+           <% @alltrades.each do |t| %>
+            <%= t.id %>
+            <% end %>
+          </div>
          <% @trade.each do |f| %>
          <% f.currentprices %>
          <% end  %>
