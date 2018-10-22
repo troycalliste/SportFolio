@@ -18,6 +18,7 @@ class StaticpagesController < ApplicationController
     @users.each do |u|
       u.totalprof
     end
+
   end
 
   def help

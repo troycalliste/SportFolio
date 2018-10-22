@@ -6,16 +6,7 @@
 
 
  <div>
-  <% @bigcomp.each do |c| %>
-    <span class="spn">
-     <%= content_tag(:span, "#{c.ticker}" , class: "ticker") %>&nbsp&nbsp&nbsp&nbsp
-     <%= content_tag(:span, "  #{c.changepercent * 100}%", class: "change-price") %>
-     <%= content_tag(:div, "#{c.currentprice}" , class: "currentprice") %>
-      <span class="vole">Volume:</span>
-     <%= content_tag(:span, "#{c.volume}" , class: "volume")%>
 
-   </span>
-  <% end %>
  </div>
 
 

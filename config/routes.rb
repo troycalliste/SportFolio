@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
 
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   devise_for :users, controllers: { sessions: "devise/sessions", omniauth_callbacks: 'omniauth_callbacks' }
   get 'auth/:provider/callback', to: 'devise/sessions#create'
   authenticated :user do

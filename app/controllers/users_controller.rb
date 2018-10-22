@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     @comp = Company.all + Commodity.all
     @camp = Company.all.pluck(:currentprice)
     @comm = Commodity.all.pluck(:id)  #trade the first one   make sure its right
+
     @nokocomp = Company.first
     @nokocomp.noko
     @nokocomp.noko2
@@ -31,6 +32,7 @@ class UsersController < ApplicationController
      @tradeshorts = @trades.where(tradetype: "Short")
      @trade = Trade.where(user_id: params[:id])
      @trade.first.tradeprices   #going to do this for all
+     @trade.first.tradeset
 
      @alltrades = Trade.where.not(volume: nil, stockprice: nil)
      @alltrades.each do |t|

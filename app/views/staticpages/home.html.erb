@@ -49,12 +49,9 @@ S
         <div id="tradersnow">
           TRADERS ONLINE
           <div>
-
-                 <% User.order("totalprofit DESC").limit(5).each do |u| %>
-                  <%= u.id %>
-                   <% end %>
-
-
+            <% User.order("totalprofit DESC").limit(5).each do |u| %>
+              <%= u.id %>
+               <% end %>
           </div>
         </div>
 

@@ -63,8 +63,9 @@ gem 'google-api-client', '~> 0.10.3'
 gem 'activerecord-session_store', '~> 1.0'
 
 gem 'nokogiri', '~> 1.6', '>= 1.6.8'
-gem 'clockwork', '~> 2.0'
+gem 'clockwork'
 gem 'sidekiq'
+gem 'activeadmin', github: 'activeadmin'
 
 
 group :development, :test do
@@ -75,7 +76,7 @@ end
 group :production, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
 
-  
+
 
 end
 

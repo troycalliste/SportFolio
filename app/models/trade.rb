@@ -32,4 +32,9 @@ class Trade < ApplicationRecord
     def uptrades
       self.stockprice > self.currentprice
     end
+    def tradeset
+     self.currenttradeprice = self.currentprice * self.volume
+     self.save
+    end
+
 end

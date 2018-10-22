@@ -12,3 +12,4 @@ open('ftp://ftp.nasdaqtrader.com/SymbolDirectory/otherlisted.txt') do |cos|
     Company.create!(ticker: ticker, otherdata: otherdata)
   end
 end
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
