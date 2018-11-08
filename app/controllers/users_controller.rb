@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @trade = Trade.new
     @reg = Region.all
     @exch = Exchange.all
     @comp = Company.all + Commodity.all
@@ -30,15 +31,15 @@ class UsersController < ApplicationController
      @trades = @trades.region_id(params[:region_id]) if params[:region_id].present?
      @tradelongs = @trades.where(tradetype: "Long")
      @tradeshorts = @trades.where(tradetype: "Short")
-     @trade = Trade.where(user_id: params[:id])
-     @trade.first.tradeprices   #going to do this for all
-     @trade.first.tradeset
+     # @trade = Trade.where(user_id: params[:id])
+     # @trade.first.tradeprices   #going to do this for all
+     # @trade.first.tradeset
 
      @alltrades = Trade.where.not(volume: nil, stockprice: nil)
      @alltrades.each do |t|
        t.tradeprices
       end
-     @comptrade = @trade.first      #we're talking about trade 2
+     # @comptrade = @trade.first      #we're talking about trade 2
 
 
    end

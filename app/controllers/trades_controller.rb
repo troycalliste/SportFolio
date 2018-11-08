@@ -1,6 +1,6 @@
 class TradesController < ApplicationController
   before_action :set_trade, only: [:show, :edit, :update, :destroy]
-
+  protect_from_forgery with: :null_session
   # GET /trades
   # GET /trades.json
 
@@ -35,6 +35,8 @@ class TradesController < ApplicationController
   # GET /trades/new
   def new
     @trade = Trade.new
+    @user = User.find(params[:user_id])     # all that params[:user_id] is  is a number    like User.find(2), it comes from the new trade's user_id column
+    @trade = @user.trades.new
   end
 
   # GET /trades/1/edit
@@ -44,15 +46,21 @@ class TradesController < ApplicationController
   # POST /trades
   # POST /trades.json
   def create
-    @trade = Trade.new(trade_params)
-
-
+    # @trade = Trade.new(trade_params)
+    @user = User.find(params[:user_id])
+    @trade= @user.trades.build(trade_params)
+    
+    @trade.tradeprices
     respond_to do |format|
-      if @trade.save
-        format.html { redirect_to "http://localhost:3000/users/19/trades/#{@trade.id}", notice: 'Trade was successfully created.' }
+      if @trade.tradeprice < @user.wallet
+        @trade.save
+
+        @user.wallet = @user.wallet - @trade.tradeprice
+        @user.save
+        format.html { redirect_to "https://localhost:3000", notice: 'Trade was successfully created.' }
         format.json { render :show, status: :created, location: @trade }
       else
-        format.html { render :new }
+        format.html { redirect_to "https://localhost:3000", notice: 'Trade was not saved.' }
         format.json { render json: @trade.errors, status: :unprocessable_entity }
       end
     end
@@ -75,12 +83,13 @@ class TradesController < ApplicationController
   # DELETE /trades/1
   # DELETE /trades/1.json
   def destroy
+    @user = User.find(params[:user_id])
+    @trade = @user.trades.find(params[:id])
+    @user.wallet = @user.wallet + @trade.currenttradeprice
     @trade.destroy
-    respond_to do |format|
-      format.html { redirect_to trades_url, notice: 'Trade was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to user_path(@user)
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -90,6 +99,6 @@ class TradesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trade_params
-      params.require(:trade).permit(:id, :stock, :volume, :user_id, :region_id, :tradetype, :stockprice, :one, :company_id)
+      params.require(:trade).permit(:id, :stock, :volume, :user_id, :region_id, :tradetype, :stockprice, :one, :company_id, :commodity_id)
     end
 end

@@ -1,18 +1,18 @@
-<%= simple_form_for @user do |b| %>
+
+<%= form_with(model: [ @user, Trade.new ]) do |form| %>
 
 
-  <%= b.simple_fields_for(:trades, @user.trades.build) do |p| %>
-    <%= p.input :stock, collection: @comp %>
-    <%= p.input :company_id %>
-    <%= p.input :commodity_id, collection: @comm %>
-    <%= p.input :region_id, collection: @reg %>
-    <%= p.input :tradetype %>
-    <%= p.input :volume %>
-    <%= p.submit "Create"%>
-    <%= p.submit "Review Trade", name: "preview_button" %>
+  <%= form.text_field :stock, collection: @comp %>
+  <%= form.number_field :company_id %>
+  <%= form.number_field :commodity_id, collection: @comm %>
+  <%= form.number_field :region_id, collection: @reg %>
+  <%= form.text_field :tradetype %>
+  <%= form.number_field :stockprice %>
+  <%= form.number_field :volume %>
 
-  <% end %>
+    <%= form.submit %>
+  </div>
 <% end %>
-
+<%# <%= link_to "create trade", new_user_trade_path%> %>
 
 <%=  select("post", "person_id", Company.all.collect {|p| [ p.id, p.id ] }, { include_blank: true })%>

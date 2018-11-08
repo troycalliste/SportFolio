@@ -10,9 +10,8 @@
             <%= t.id %>
             <% end %>
           </div>
-         <% @trade.each do |f| %>
-         <% f.currentprices %>
-         <% end  %>
+          <% @trade.currentprices  %>
+
       </div>
       <ul class="usernavs">
               <li><%= link_to "Overview" %></li>
@@ -63,12 +62,37 @@
 <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
 <% end %>
 
-<% @trades.each do |t| %>
-<%= t.stock %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<% @user.trades.each do |trade| %>
+<%= trade.stock %>
+<%= trade.id %>
+<%= link_to 'Edit', edit_user_trade_path(trade) %>
+<%= link_to 'Destroy Comment', [trade.user, trade],
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
 <% end %>
 
 <%= render "thetrade" %>
-<%= render "thestage" %>
+<% # render "thestage" %>
+
+<p><%= @trades.where(tradetype: "Long").select(:stock).map(&:stock).uniq.count %>
+
+
+</p>
 <%= link_to 'Edit' %>
 
 

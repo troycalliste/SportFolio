@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
 
 
+  resources :examples
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users, controllers: { sessions: "devise/sessions", omniauth_callbacks: 'omniauth_callbacks' }
@@ -45,7 +46,8 @@ Rails.application.routes.draw do
   resources :users do
     resources :trades
   end
-  resources :trades
+
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -36,6 +36,7 @@ gem 'thread'
 
 gem 'whenever', require: false
 # Use ActiveModel has_secure_password
+gem 'crono'
 gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', require: 'bcrypt' if Gem.win_platform?
 # gem 'httparty'
 gem 'delayed_job_active_record'

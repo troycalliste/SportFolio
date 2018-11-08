@@ -283,6 +283,7 @@ Devise.setup do |config|
   # config.omniauth :google_oauth2, client_id, client_secret, scope: 'email', provider_ignores_state: true
   # refresh_token = User.where(provider: auth.provider, uid: auth.uid).first.refresh_token
   config.omniauth :google_oauth2, ENV['GOOGLE_ID'], ENV['GOOGLE_SECRET'], {scope: 'email', provider_ignores_state: true, access_type: 'offline'}
+  # config.secret_key = Rails.application.credentials.secret_key_base
 
 
 

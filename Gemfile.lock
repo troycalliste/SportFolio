@@ -106,6 +106,9 @@ GEM
     concurrent-ruby (1.0.5)
     connection_pool (2.2.2)
     crass (1.0.3)
+    crono (1.1.2)
+      activerecord (>= 4.0)
+      activesupport (>= 4.0)
     declarative (0.0.10)
     declarative-option (0.1.0)
     delayed_job (4.1.4)
@@ -370,6 +373,7 @@ DEPENDENCIES
   carrierwave (~> 1.0)
   clockwork
   coffee-rails (~> 4.2)
+  crono
   delayed_job_active_record
   delayed_job_recurring
   devise

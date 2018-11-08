@@ -2,8 +2,9 @@ class TradesetJob < ApplicationJob
   queue_as :default
 
   def perform(*args)
-    Trade.each do |t|
+    Trade.all.each do |t|
       t.tradeset
+      t.save
     end
   end
 end

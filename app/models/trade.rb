@@ -1,7 +1,7 @@
 class Trade < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :companies
-  has_and_belongs_to_many :trades
+
 
   scope :region_id, -> (region_id) { where region_id: region_id }
   scope :location, -> (location_id) { where location_id: location_id }
@@ -11,7 +11,7 @@ class Trade < ApplicationRecord
 
   def tradeprices
     self.tradeprice = self.stockprice * self.volume
-    self.save
+
    end
 
    def currentprices   # to get company current price to match trade current price
