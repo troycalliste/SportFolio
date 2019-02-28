@@ -12,4 +12,5 @@
 # end
 #
 # Crono.perform(TestJob).every 2.days, at: '15:30'
-Crono.perform(TradesetJob).every 30.seconds
+# Crono.perform(TradesetJob).every 30.seconds
+Crono.perform(LatestnewsJob).every 30.seconds

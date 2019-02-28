@@ -111,6 +111,40 @@ class UsersController < ApplicationController
     @user.save               #at this point it updates user
     redirect_back fallback_location: { action: "show", id: 18 }
   end
+
+  def search
+    begin
+
+   @user = User.find_by_name params[:name]
+   @alltrades = Trade.where.not(volume: nil, stockprice: nil)
+
+   @trade = Trade.new
+   @reg = Region.all
+   @exch = Exchange.all
+   @comp = Company.all + Commodity.all
+   @camp = Company.all.pluck(:currentprice)
+   @comm = Commodity.all.pluck(:id)  #trade the first one   make sure its right
+
+   @nokocomp = Company.first
+   @nokocomp.noko
+   @nokocomp.noko2
+   @nokocomp.noko3
+   @nokocomp.noko4
+   @nokocomp.noko5
+   @nokocomp.noko6
+    @trades = Trade.where(nil) # creates an anonymous scope
+    @trades = @trades.region_id(params[:region_id]) if params[:region_id].present?
+    @tradelongs = @trades.where(tradetype: "Long")
+    @tradeshorts = @trades.where(tradetype: "Short")
+
+   render action: 'show'
+  rescue StandardError
+    redirect_to "/admin"
+
+   raise
+ end
+
+  end
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy

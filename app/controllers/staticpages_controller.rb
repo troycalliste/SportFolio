@@ -1,6 +1,8 @@
 class StaticpagesController < ApplicationController
+   skip_before_action :authenticate_user!
   rescue_from ActionView::Template::Error, with: :handle_timeout
   rescue_from Timeout::Error, with: :handle_timeout
+
   include ActionController::Live
 
 

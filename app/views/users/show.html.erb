@@ -2,6 +2,7 @@
   <div class="fade">
      <div class="userbox">
        <div class="userlast">
+        <% if @user %>
          <div class="ava"><%= image_tag @user.avatar.url(:thumb) %></div>
          <div class="usersname"> <%= @user.email %> </div>
          <%= @user.wallet %>
@@ -11,6 +12,11 @@
             <% end %>
           </div>
           <% @trade.currentprices  %>
+
+          <% else %>
+           <h3>There are no stats for this account… Make some trades!</h3>
+
+            <% end %>
 
       </div>
       <ul class="usernavs">
@@ -28,13 +34,15 @@
         <li>
 
 
-
+        <% if @user %>
           <%= form_with url: user_trades_path(@user), method: :get, local: true do |form| %>
 
             <%= select_tag(:term, options_for_select([['2018', 1], ['2017', 2]])) %>
 
            <% form.submit %>
            <% end %>
+
+        <% end %>
 
 
 
@@ -47,7 +55,10 @@
 
       </div>
 
+
+     <% if @user %>
     <%= render "table" %>
+
 
 
 <div class="lower">
@@ -60,6 +71,8 @@
 <%= link_to 'Edit', edit_user_path(@user) %>
 <%= link_to 'Back', users_path %>
 <%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
+
+
 <% end %>
 
 
@@ -80,13 +93,15 @@
 <% @user.trades.each do |trade| %>
 <%= trade.stock %>
 <%= trade.id %>
-<%= link_to 'Edit', edit_user_trade_path(trade) %>
+
 <%= link_to 'Destroy Comment', [trade.user, trade],
               method: :delete,
               data: { confirm: 'Are you sure?' } %>
 <% end %>
 
 <%= render "thetrade" %>
+
+  <% end %>
 <% # render "thestage" %>
 
 <p><%= @trades.where(tradetype: "Long").select(:stock).map(&:stock).uniq.count %>
@@ -94,6 +109,8 @@
 
 </p>
 <%= link_to 'Edit' %>
+
+
 
 
 

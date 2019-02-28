@@ -1,7 +1,8 @@
 
   <header>
     <!-- will put in navbar partial  for app/layout> -->
-      <div class="container">
+
+      <div class="containerss">
         <div class="main">
           <div class="logo">
           <%= link_to "SportFolio", root_path, id: "homelogo" %>
@@ -18,7 +19,7 @@
                     <li><%= link_to "COMPANIES" %></li>
                     <li><%= link_to "NEWS" %></li>
                     <li><%= link_to "COMMUNITY" %></li>
-                    <li><%= link_to "SECTORS" %></li>
+                    <li><%= link_to "PORTFOLIO" %></li>
                     <li class="search">
                       <div class="space">
                         <%= form_with url: '/search', method: :get, local: true, class: "searchy" do |f| %>
@@ -32,19 +33,55 @@
             </ul>
         </div>
         <div class="homesignup">
-          <%= form_with url:  new_user_session_path do |form| %>
-            <%= form.text_field :username, placeholder: "Enter Username to Sign Up..." %>
-          <% end %>
+
+
+
+
+        <%= form_tag(search_path, method: "post") do %>
+          <%= label_tag(:name, "Search for:") %>
+          <%= text_field_tag(:name) %>
+          <%= submit_tag("Search") %>
+        <% end %>
+
        </div>
 
        <%= render 'scroll' %>
     </div>
 
   </header>
-S
- <div class="mid">
+<div class="container">
+
+
+<%  News.all.each do |n| %>
+<div class="col-md-4">
+<div class="inner">
+  <div class="titleinner">
+    <%= n.title + "|" %>
+    <%= "Published on " + n.publishedon.strftime('%a, %d %b %Y') %>
+
+  </div>
+<%= image_tag "#{n.imageurl}",  height: '400', width: '750' %>
+   <div class="contentinner">
+     <%= n.content %>
+   </div>
+</div>
+</div>
+
+<% end %>
+</div>
+
+
+
+
+ </div>
+
+
+
+
+ <div class="midn">
    <div class="activetrade">
 
+     </div>
      <div class="onlinenow">
         <div id="tradersnow">
           TRADERS ONLINE
@@ -52,18 +89,130 @@ S
             <% User.order("totalprofit DESC").limit(5).each do |u| %>
               <%= u.id %>
                <% end %>
-          </div>
+
+
         </div>
+
+        <div id="disqus_thread"></div>
+
+      <script>
+
+      /**
+      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+      /*
+      var disqus_config = function () {
+      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://sportfolio.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+      })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
 
      </div>
    </div>
-
  </div>
 
 
 
 
 
-<div class="messagetest">
-  <p>just testing where this goes</p>
+
+
+
+<div>
+
+  <div class="container">
+
+  <div class="row">
+    <div class="col  col-centered">
+
+      <ul>
+
+
+        <% Sector.all.each do |s| %>
+        <%= link_to s.name, sector_path(s) %>
+        <% end %>
+      </ul>
+
+    </div>
+
+    <div class="col">
+       Social Media
+      <ul>
+      <li><i class="fab fa-twitter"></i><a href="http://twitter.com"> Twitter</a></li>
+      <li><i class="fab fa-facebook-f"></i><a href="http://facebook.com">Facebook</a></li>
+    </ul>
+
+    </div>
+    <div class="col">
+       Contact Us
+      <ul>
+      <li><i class="fas fa-at"></i>Email Us</li>
+      <li><i class="fas fa-envelope"></i> Leave a Message</li>
+    </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      1 of 3
+    </div>
+    <div class="col-5">
+      2 of 3 (wider)
+    </div>
+    <div class="col">
+      3 of 3
+    </div>
+  </div>
+</div>
+
+
+  <footer class="text-muted">
+
+
+
+
+
+
+
+
+    <div id="scontainer">
+      <div id="innerone">
+        <div class="child">ok
+          <ul>
+          <li>Black tea</li>
+          <li>Green tea</li>
+        </ul>
+        </div>
+
+        <div class="child">ok
+          <ul>
+        <li>Black tea</li>
+        <li>Green tea</li>
+      </ul>
+        </div>
+        <div class="child">ok
+          <ul>
+        <li>Black tea</li>
+        <li>Green tea</li>
+      </ul>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-default btn-lg pull-xs-right">
+      <a href="#">Back to Top</a>
+      </button>
+
+
+
+  </footer>
+
 </div>

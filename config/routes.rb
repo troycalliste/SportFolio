@@ -11,9 +11,10 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users, controllers: { sessions: "devise/sessions", omniauth_callbacks: 'omniauth_callbacks' }
   get 'auth/:provider/callback', to: 'devise/sessions#create'
-  authenticated :user do
-  root 'staticpages#home', as: 'authenticated_root'
-  end
+
+
+  get '/', to: "staticpages#home"
+  post 'search' => 'users#search'
 
   devise_scope :user do
   get '/users/sign_out' => 'devise/sessions#destroy'
@@ -35,6 +36,7 @@ Rails.application.routes.draw do
 
   get 'staticpages/help'
 
+
   get 'staticpages/tour'
 
   get 'staticpages/about'
@@ -42,7 +44,8 @@ Rails.application.routes.draw do
   get 'static/pages'
   get 'users/preview'
   get 'users/revise'
-
+  # get '/sectors/:id', to: "sectors#show"
+  resources :sectors
   resources :users do
     resources :trades
   end

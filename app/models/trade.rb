@@ -1,6 +1,7 @@
 class Trade < ApplicationRecord
   belongs_to :user
   has_and_belongs_to_many :companies
+  has_one :tradeinfo
 
 
   scope :region_id, -> (region_id) { where region_id: region_id }

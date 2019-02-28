@@ -5,7 +5,7 @@ body {
     overflow-x: hidden;
 }
 
-.container {
+.containerss {
   margin: 0;
   padding: 0;
   font-family: arial, serif;
@@ -330,12 +330,13 @@ span .change-price {
 
 
 
-.mid {
-  background-color: black;
+.midn {
+  background-color: tomato;
   height: 500px;
   width: 1500px;
   margin-top: 0px;
-  position: absolute;
+  padding-bottom: 100px;
+
 }
 .activetrade {
   background-color: #212121;
@@ -361,4 +362,28 @@ span .change-price {
   margin-top: 8px;
   font-size: 14px;
   position: relative;
+}
+
+
+.inner {
+  // position: absolute;
+}
+
+#scontainer {
+  background-color: red;
+  overflow: hidden;
+
+  width: 100%;
+  border: 15px solid orange;
+}
+
+#innerone {
+  overflow: hidden;
+  width: 100%;
+
+}
+
+.child {
+  background-color: blue;
+  text-align: center;
 }
