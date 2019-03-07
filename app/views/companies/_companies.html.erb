@@ -1,0 +1,13 @@
+<%= will_paginate @test %>
+<table id="myTable">
+  <tr>
+    <th>Symbol</th>
+    <th>Name</th>
+  </tr>
+  <% @test.each do |c| %>
+  <tr>
+    <td class="tick"><%= link_to c.ticker, "https://www.nasdaq.com/symbol/#{c.ticker}" %></td>
+    <td><%= c.otherdata %></td>
+  </tr>
+<% end %>
+</table>

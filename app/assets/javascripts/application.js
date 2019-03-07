@@ -18,3 +18,14 @@
 //= require popper
 //= require bootstrap-sprockets
 //= require customjs.js
+
+$(document).on("ready turbolinks:load", function() {
+  $('#companies .pagination a').live('click', function() {
+    $.getScript(this.href);
+    return false;
+  });
+  return $('#companies_search').submit(function() {
+    $.get(this.action, $(this).serialize(), null, 'script');
+    return false;
+  });
+});

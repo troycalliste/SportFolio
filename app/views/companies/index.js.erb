@@ -1,3 +1,2 @@
 //every three seconds this happens
-$('.spanner').html("<%= j render @companies %>")
-CompanyPoller.poll();
+$("#companies").html("<%= escape_javascript(render("companies")) %>");

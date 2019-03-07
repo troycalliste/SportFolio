@@ -27,7 +27,12 @@ class StaticpagesController < ApplicationController
     @companies = Company.all
   end
 
-  def tour
+  def leaderboard
+    @users = User.all.paginate(page: params[:page], per_page: 2)
+    @numunrounded = User.count / 2
+    @num = @numunrounded.round
+    @offset = @users.order("totalprofit DESC").offset(@num)
+
   end
 
 

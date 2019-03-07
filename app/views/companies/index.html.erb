@@ -1,10 +1,29 @@
    <!-- for devise  move to app layout -->
 <p id="notice"><%= notice %></p>
 
+<div class="CompIndex">
 <h1>Companies</h1>
 
-
-<% @companies.each do |c| %>
-<%= c.ticker %>
-<%= c.change %>
+<%= form_tag companies_path, :method => 'get', id: "companies_search" do %>
+<p>
+<%= text_field_tag :search, params[:search]%>
+<%= submit_tag "Search", name: nil%>
 <% end %>
+</p>
+
+
+
+<div id="companies"><%= render "companies" %></div>
+<script>
+  $(document).on("click", "#companies .pagination a", function() {
+    $.getScript(this.href);
+    return false;
+    });
+  $(document).on("keyup", "#companies_search input", function() {
+       $.get($("#companies_search").attr("action"), $("#companies_search").serialize(), null, "script");
+      return false;
+    });
+
+
+</script>
+</div>

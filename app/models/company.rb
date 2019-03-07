@@ -6,6 +6,14 @@ require 'open-uri'
 class Company < ApplicationRecord
  has_and_belongs_to_many :trades
 
+ def self.search(search)
+   if search
+     where('otherdata ilike ? OR ticker ilike ?', "%#{search}%", "#{search}")
+   else
+     self.where(nil)
+   end
+ end
+
  def chngepercntges
 
     RestClient.get("https://api.iextrading.com/1.0/stock/#{self.ticker}/quote") { |response, request, result, &block|

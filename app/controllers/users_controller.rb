@@ -79,20 +79,7 @@ class UsersController < ApplicationController
   def update
     @user     # @trade = Trade.where(user_id: params[:id])
     @user.update(user_params)
-    @tradeone = @user.trades.last
-    if @tradeone.company_id
-      @company = Company.find(@tradeone.company_id)
-      @tradeone.stockprice = @company.currentprice
-      @tradeone.tradeprices
-      @tradeone.save
-    elsif @tradeone.commodity_id
-      @company = Commodity.find(@tradeone.commodity_id)
-      @tradeone.stockprice = @company.currentprice
-      @tradeone.tradeprices   #stockprice x volume
-      @tradeone.save
-    end
 
-    render :action => "preview"
     #im going to set one to two from here
     # respond_to do |format|
     #   if @user.update(user_params)

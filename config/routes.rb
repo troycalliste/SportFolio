@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
 
   get '/', to: "staticpages#home"
+  get '/leaderboard', to: "staticpages#leaderboard"
   post 'search' => 'users#search'
 
   devise_scope :user do
@@ -40,6 +41,7 @@ Rails.application.routes.draw do
   get 'staticpages/tour'
 
   get 'staticpages/about'
+
 
   get 'static/pages'
   get 'users/preview'

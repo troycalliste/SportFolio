@@ -1,0 +1,10 @@
+<table class="tbl" border="1">
+    <th>No</th> <th>Name</th><th>ranking</th>
+  <% User.order("totalprofit Desc").each do |u| %>
+
+    <tr>
+        <td></td> <td><%= u.name %></td><td><%= u.totalprofit %></td>
+    </tr>
+
+    <% end %>
+</table>

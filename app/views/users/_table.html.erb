@@ -68,7 +68,7 @@
                     </ul>
                     <ul class="careertrades">
                       <li>Companies Held <%= @user.trades.distinct.count('stock') %></li>
-                      <li>Largest Trade <% large = @user.trades.order('tradeprice DESC').first %>  <%= large.company_id%>:  <%= large.tradeprice%> </li>
+                    
                       <li>Profit  <%= @user.trades.sum(:stockprice) - @user.trades.sum(:currentprice) %></li>
                     </ul>
                   </div>

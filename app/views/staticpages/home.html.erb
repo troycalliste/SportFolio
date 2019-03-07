@@ -2,6 +2,7 @@
   <header>
     <!-- will put in navbar partial  for app/layout> -->
 
+
       <div class="containerss">
         <div class="main">
           <div class="logo">
@@ -16,9 +17,9 @@
               <% end %>
             </div>
             <ul class="nav-items">
-                    <li><%= link_to "COMPANIES" %></li>
+                    <li><%= link_to "COMPANIES", companies_path %></li>
                     <li><%= link_to "NEWS" %></li>
-                    <li><%= link_to "COMMUNITY" %></li>
+                    <li><%= link_to "LEADERBOARD", "/leaderboard" %></li>
                     <li><%= link_to "PORTFOLIO" %></li>
                     <li class="search">
                       <div class="space">
@@ -81,44 +82,67 @@
  <div class="midn">
    <div class="activetrade">
 
-     </div>
+
      <div class="onlinenow">
         <div id="tradersnow">
           TRADERS ONLINE
-          <div>
+      <div>
             <% User.order("totalprofit DESC").limit(5).each do |u| %>
               <%= u.id %>
                <% end %>
+       </div>
 
 
-        </div>
 
-        <div id="disqus_thread"></div>
 
-      <script>
 
-      /**
-      *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-      *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-      /*
-      var disqus_config = function () {
-      this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-      };
-      */
-      (function() { // DON'T EDIT BELOW THIS LINE
-      var d = document, s = d.createElement('script');
-      s.src = 'https://sportfolio.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-      })();
-      </script>
-      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 
      </div>
    </div>
  </div>
+ <div class="minileaderboard">
+   <table>
+     Leaderboard
+     <tr>
+       <th>#</th>
+       <th>Trader</th>
+       <th>Points</th>
+     </tr>
+     <% User.order("totalprofit DESC").each do |u|  %>
+     <tr>
+       <td></td>
+       <td><span class="i"><%= image_tag u.avatar.url(:thumb) %></span><%= u.name %></td>
+       <td><%= u.totalprofit %></td></tr>
+     <% end %>
+   </table>
+  </div>
+ </div>
+
+
+
+
+ <div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://sportfolio.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
 
 
 
@@ -174,6 +198,7 @@
 </div>
 
 
+
   <footer class="text-muted">
 
 
@@ -210,6 +235,7 @@
     <button class="btn btn-default btn-lg pull-xs-right">
       <a href="#">Back to Top</a>
       </button>
+
 
 
 

@@ -1,5 +1,5 @@
-<div class="contain">
-  <div class="fade">
+
+ <div class="backgroundimg">
      <div class="userbox">
        <div class="userlast">
         <% if @user %>
@@ -11,7 +11,7 @@
             <%= t.id %>
             <% end %>
           </div>
-          <% @trade.currentprices  %>
+          <% @trade.currentprices %>
 
           <% else %>
            <h3>There are no stats for this account… Make some trades!</h3>
@@ -54,15 +54,16 @@
        </ul>
 
       </div>
+<div>
+<%= render "table" %>
+</div>
+</div>
+<% if @user %>
 
 
-     <% if @user %>
-    <%= render "table" %>
 
-
-
-<div class="lower">
-  <p id="notice"><%= notice %></p>
+<div class="lowers">
+ <p id="notice"><%= notice %></p>
 <p><%= @user.email %></p>
 <p><%= @user.last_seen %></p>
 
@@ -90,18 +91,20 @@
 
 
 
+
 <% @user.trades.each do |trade| %>
 <%= trade.stock %>
 <%= trade.id %>
 
 <%= link_to 'Destroy Comment', [trade.user, trade],
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %>
+             method: :delete,
+             data: { confirm: 'Are you sure?' } %>
 <% end %>
 
 <%= render "thetrade" %>
+<%= render "leaderboard" %>
 
-  <% end %>
+ <% end %>
 <% # render "thestage" %>
 
 <p><%= @trades.where(tradetype: "Long").select(:stock).map(&:stock).uniq.count %>

@@ -339,14 +339,14 @@ span .change-price {
 
 }
 .activetrade {
-  background-color: #212121;
+  background-color: red;
   height: 92px;
   width: 293px;
   // padding-left: 300px;
   margin-left: 690px;
   margin-top: 30px;
   // padding-top: 10px;
-  position: absolute;
+
 }
 .onlinenow {
   background-color: #242527;
@@ -363,6 +363,24 @@ span .change-price {
   font-size: 14px;
   position: relative;
 }
+
+.minileaderboard {
+  background-color: blue;
+
+  // padding-left: 300px;
+  margin-left: 690px;
+  margin-top: 30px;
+
+  // padding-top: 10px;
+ position: absolute;
+}
+
+
+
+
+
+
+
 
 
 .inner {

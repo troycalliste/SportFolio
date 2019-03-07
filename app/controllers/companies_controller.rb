@@ -8,7 +8,7 @@ class CompaniesController < ApplicationController
   # GET /companies.json
   def index
     @companies = Company.first(10)   #will show by Company.order('latestvolume DESC').limit(25)
-    @test = Company.all
+    @test = Company.search(params[:search]).paginate(page: params[:page], per_page: 10)
     @bigcomp = @test.order('changepercent DESC').limit(20)
     respond_to do |format|
       format.js

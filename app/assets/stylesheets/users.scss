@@ -1,9 +1,38 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.backgroundimg {
+  margin: 0;
+  padding: 0;
+  font-family: arial, serif;
+  // background-image: url("8647.jpg");
+  background-image: url("backgrnd.jpg");
+  background-size: 1470px 780px;
 
-.lower {
+  // padding-bottom: 1700px;
+  // height: 550px;
+  background-repeat: no-repeat;
+  // background-attachment: fixed;
+
+  background-position: 0px -250px;
+}
+.lowers {
+  padding-top: 1000px;
   height: 1800px;
-  background-color: black;
+  background-color: green;
 
+}
+.tbl tr:nth-child(2){
+  counter-reset: rowNumber;
+}
+.tbl tr {
+    counter-increment: rowNumber;
+}
+.tbl tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+}
+.tbl{
+ width: 400px;
 }

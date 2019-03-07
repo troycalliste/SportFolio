@@ -54,6 +54,7 @@ gem 'simple_form'
 
 gem 'carrierwave', '~> 1.0'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem 'will_paginate'
 
 # User Authentication with Facebook
 gem 'omniauth-facebook'

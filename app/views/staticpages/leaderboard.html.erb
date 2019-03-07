@@ -1,0 +1,31 @@
+<div class="leaderboardlarge">
+  <h2>Leaderboard</h2>
+  <p>this is the <%= @num %></p>
+  <%= will_paginate @users %>
+<table>
+  <tr>
+    <th>#</th>
+
+    <th>Trader</th>
+    <th></th>
+    <th>Points</th>
+  </tr>
+  <% @users.order("totalprofit DESC").limit(@num).each do |u| %>
+  <tr>
+    <td></td>
+    <td><span class="ilarge"><i class="fas fa-medal" style="color:#FFD700;"></i></span><%= link_to u.name, user_path(u) %></td>
+    <td><%= image_tag u.avatar.url(:thumb) %><span>Top 1%</span></td>
+    <td><%= u.totalprofit %></td></tr>
+  <% end %>
+  <% @offset.each do |u| %>
+<tr>
+  <td></td>
+  <td><%= link_to u.name, user_path(u) %></td>
+  <td><%= image_tag u.avatar.url(:thumb) %><span>Top 50%</span></td>
+  <td><%= u.totalprofit %></td></tr>
+
+<% end %>
+
+
+</table>
+  <%= will_paginate @users %>
