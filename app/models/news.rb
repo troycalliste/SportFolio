@@ -4,7 +4,7 @@ require 'nokogiri'
 require 'open-uri'
 class News < ApplicationRecord
   def newsupdate
-    RestClient.get("https://newsapi.org/v2/top-headlines?sources=financial-times&apiKey=5fd8a5116ff94c548b57d66f1faa1dec") { |response, request, result, &block|
+    RestClient.get("https://newsapi.org/v2/top-headlines?sources=cnbc&apiKey=5fd8a5116ff94c548b57d66f1faa1dec") { |response, request, result, &block|
            case response.code
            when 200
              data = JSON.parse(response.body)
@@ -26,4 +26,21 @@ class News < ApplicationRecord
 
   }
   end
+
+
+  def self.save_data_from_api
+    RestClient.get("https://newsapi.org/v2/top-headlines?sources=cnbc&apiKey=5fd8a5116ff94c548b57d66f1faa1dec") { |response, request, result, &block|
+    data = JSON.parse(response.body)
+    @articles = data["articles"]
+    @articles.map do |a|
+    @new = News.new
+    @new.title = a["title"]
+    @new.content = a["description"]
+    @new.imageurl = a["urlToImage"]
+    @new.publishedon = a["publishedAt"]
+    @new.save
+    end
+    }
+  end
+
 end

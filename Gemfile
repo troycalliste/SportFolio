@@ -5,13 +5,13 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use postgres as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
+ruby "2.5.0p0"
 # gem 'thin'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -21,8 +21,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
-# Use jquery as the JavaScript library
+ # Use jquery as the JavaScript library
 gem 'bootstrap'
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -33,6 +32,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'openssl'
 # gem 'intrinio-realtime'
 gem 'thread'
+gem 'geocoder'
 # gem 'redis', '~> 3.0'
 
 gem 'whenever', require: false
@@ -65,7 +65,7 @@ gem 'omniauth-google-oauth2', '~> 0.4.1'
 gem 'google-api-client', '~> 0.10.3'
 gem 'activerecord-session_store', '~> 1.0'
 
-gem 'nokogiri', '~> 1.6', '>= 1.6.8'
+gem 'nokogiri'
 gem 'clockwork'
 gem 'sidekiq'
 gem 'activeadmin', github: 'activeadmin'

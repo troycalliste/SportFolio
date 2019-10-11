@@ -1,244 +1,194 @@
-
-  <header>
-    <!-- will put in navbar partial  for app/layout> -->
-
-
-      <div class="containerss">
-        <div class="main">
-          <div class="logo">
-          <%= link_to "SportFolio", root_path, id: "homelogo" %>
-          </div>
-            <div class="signup">
-              <% if user_signed_in? %>
-                Loggin in as
-              <% else %>
-                <%= link_to "Sign up", new_user_registration_path %>
-                <%= link_to "Login", new_user_session_path %>
-              <% end %>
-            </div>
-            <ul class="nav-items">
-                    <li><%= link_to "COMPANIES", companies_path %></li>
-                    <li><%= link_to "NEWS" %></li>
-                    <li><%= link_to "LEADERBOARD", "/leaderboard" %></li>
-                    <li><%= link_to "PORTFOLIO" %></li>
-                    <li class="search">
-                      <div class="space">
-                        <%= form_with url: '/search', method: :get, local: true, class: "searchy" do |f| %>
-                        <%= f.text_field :q, id: :q %>
-                        <button style='width:40px;'>
-                           <i class="icon-share-alt icon-white"></i>
-                          </button>
-                        <% end %>
-                      </div>
-                    <li>
-            </ul>
-        </div>
-        <div class="homesignup">
-
-
-
-
-        <%= form_tag(search_path, method: "post") do %>
-          <%= label_tag(:name, "Search for:") %>
-          <%= text_field_tag(:name) %>
-          <%= submit_tag("Search") %>
-        <% end %>
-
-       </div>
-
-       <%= render 'scroll' %>
-    </div>
-
-  </header>
-<div class="container">
-
-
-<%  News.all.each do |n| %>
-<div class="col-md-4">
-<div class="inner">
-  <div class="titleinner">
-    <%= n.title + "|" %>
-    <%= "Published on " + n.publishedon.strftime('%a, %d %b %Y') %>
-
+<div class="containerss">
+<div class="homenav">
+<div class="offset">
+  <div class="centerset">
+    <div class="topset">
+  <div class="logo">
+      <%= link_to "SportFolio", root_path, id: "homelogo" %>
   </div>
-<%= image_tag "#{n.imageurl}",  height: '400', width: '750' %>
-   <div class="contentinner">
-     <%= n.content %>
-   </div>
-</div>
-</div>
-
-<% end %>
-</div>
-
-
-
-
- </div>
-
-
-
-
- <div class="midn">
-   <div class="activetrade">
-
-
-     <div class="onlinenow">
-        <div id="tradersnow">
-          TRADERS ONLINE
-      <div>
-            <% User.order("totalprofit DESC").limit(5).each do |u| %>
-              <%= u.id %>
-               <% end %>
-       </div>
-
-
-
-
-
-
-
+  <div class="searchhold">
+     <div class="inputsm">
+       <div class="refSearch"><i class="fa fa-search"></i></div>
+       <input type="text" id="inputTxt" placeholder="Search">
      </div>
+  </div>
+  <div class="signup">
+          <% if user_signed_in? %>
+          <%= link_to "Edit profile", edit_user_registration_path %> |
+          <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
+          <% else %>
+          <i class="fab fa-facebook-f"></i>
+           <i class="fas fa-user"></i><%= link_to "Sign up", new_user_registration_path  %> |
+           <%= link_to "Login", new_user_session_path  %>
+          <% end %>
+  </div>
+
+
+  </div> <!-- topset -->
+  <div class="bottomset">
+
+    <ul class="setlist">
+      <li>COMPANY</li>
+      <li>NEWS</li>
+      <li>LEADERBOARD</li>
+      <% if user_signed_in? %>
+      <li>COMPANY</li>
+      <li>GO PREMIUM</li>
+
+      <% else %>
+      <li>WHY SIGN UP</li>
+      <li>GO PREMIUM</li>
+
+      <% end %>
+    </ul>
+  </div>
+  </div>  <!-- centerset -->
+
+
+</div>
+
+
+</div>   <!-- homenav -->
+
+
+<div  class="offsetsm">
+<div class="containsm">
+  <div class="tsm">ENTER A USERNAME</div>
+  <div class="csm"><input type="text" id="containTxt" placeholder="Enter a name"></div>
+</div>
+
+
+
+
+</div>  <!-- offsetsm -->
+
+</div>  <!-- containerss -->
+
+<div class="boxsetwrap">
+  <div class="boxsetinner">
+  <div class="boxset"><div class="rboxset"></div></div>
+  <div class="boxset"><div class="gboxset"></div></div>
+  <div class="boxset"><div class="yboxset"></div></div>
+</div>
+</div>
+
+
+
+<div class="lcontainer">
+<div class="covcontainer">
+<div class="newscontainer">
+<%  News.all.limit(5).order("created_at DESC").each do |n| %>
+
+<div class="newsbox">
+  <%= image_tag "#{n.imageurl}", class: "nimg" %>
+  <div class="extracont">
+    <div class="extratitle">
+    <%= n.title.titlecase %>
+    </div>
+    <div class="extrapub">
+    <%= "Published on " + n.publishedon.strftime('%a, %d %b %Y') %>
+    </div>
+    <div class="extrabutton">
+     Read More
+    </div>
+
+  </div>
+</div> <!--newsbox-->
+<br>
+<% end %>
+</div> <!--newscontainer-->
+
+
+<div class="leadandonline">
+<div class="minileaderboard">
+  <table>
+
+    <tr>
+      <th>#</th>
+      <th>Trader</th>
+      <th>Points</th>
+    </tr>
+    <% User.order("totalprofit DESC").each do |u|  %>
+    <tr>
+      <td></td>
+      <td><span class="i"><%= image_tag u.avatar.url(:thumb) %></span><%= u.name %></td>
+      <td><%= u.totalprofit %></td></tr>
+    <% end %>
+  </table>
+ </div>
+
+
+ <div class="onlinenow">
+    <div id="tradersnow">
+      TRADERS ONLINE
+  <div>
+        <% User.order("totalprofit DESC").limit(5).each do |u| %>
+          <%= u.id %>
+           <% end %>
    </div>
  </div>
- <div class="minileaderboard">
-   <table>
-     Leaderboard
-     <tr>
-       <th>#</th>
-       <th>Trader</th>
-       <th>Points</th>
-     </tr>
-     <% User.order("totalprofit DESC").each do |u|  %>
-     <tr>
-       <td></td>
-       <td><span class="i"><%= image_tag u.avatar.url(:thumb) %></span><%= u.name %></td>
-       <td><%= u.totalprofit %></td></tr>
-     <% end %>
-   </table>
-  </div>
- </div>
+ </div> <!--onlinenow-->
+</div> <!--lead and online-->
+</div> <!--covcontainer-->
+
+</div> <!--lcontainer-->
 
 
+<div class="appst">
+  TRY THE APP
+  <div class="gm google"><i class="fab fa-google-play"></i>Google Play</div>
+  <div class="gm ios"><i class="fab fa-app-store-ios"></i>iOS Store</div>
+  <div class="gm discord"><i class="fab fa-discord"></i>Discord</div>
+</div>
 
 
- <div id="disqus_thread"></div>
-<script>
+<div class="acontainer">
 
-/**
-*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-/*
-var disqus_config = function () {
-this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-*/
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://sportfolio.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
-
-
-
-
-
-
-
-<div>
-
-  <div class="container">
-
-  <div class="row">
-    <div class="col  col-centered">
-
-      <ul>
-
-
-        <% Sector.all.each do |s| %>
-        <%= link_to s.name, sector_path(s) %>
-        <% end %>
+<div class="reffooter">
+  <div class="reffoot1">
+    <div class="reffoot1le">
+      <ul class="footone">
+        <li><h2>Languages</h2></li>
+        <li><%= link_to "English"%></li>
+        <li><%= link_to "French"%></li>
+        <li><%= link_to "Spanish"%></li>
+        <li><%= link_to "German"%></li>
+        <li><%= link_to "Italian"%></li>
+        <li><%= link_to "Portuguese"%></li>
       </ul>
-
     </div>
-
-    <div class="col">
-       Social Media
-      <ul>
-      <li><i class="fab fa-twitter"></i><a href="http://twitter.com"> Twitter</a></li>
-      <li><i class="fab fa-facebook-f"></i><a href="http://facebook.com">Facebook</a></li>
-    </ul>
-
-    </div>
-    <div class="col">
-       Contact Us
-      <ul>
-      <li><i class="fas fa-at"></i>Email Us</li>
-      <li><i class="fas fa-envelope"></i> Leave a Message</li>
-    </ul>
+    <div class="reffoot1ri">
+      <ul class="foottwo">
+        <li><h2>Other Links</h2></li>
+        <li><%= link_to "Companies"%></li>
+        <li><%= link_to "News"%></li>
+        <li><%= link_to "Leaderboard"%></li>
+        <li><%= link_to "Why Sign Up"%></li>
+        <li><%= link_to "Go Premium"%></li>
+      </ul>
     </div>
   </div>
-  <div class="row">
-    <div class="col">
-      1 of 3
+  <div class="reffoot2">
+    <div class="reffoot2le">
+      <ul class="footthree">
+        <li><h2>Get To Know Us</h2></li>
+        <li><%= link_to "About"%></li>
+        <li><%= link_to "Facebook"%></li>
+        <li><%= link_to "Twitter"%></li>
+        <li><%= link_to "Instagram"%></li>
+        <li><%= link_to "Contact Us"%></li>
+      </ul>
     </div>
-    <div class="col-5">
-      2 of 3 (wider)
-    </div>
-    <div class="col">
-      3 of 3
+    <div class="reffoot2ri">
+      <ul class="footfour">
+        <li><h2>Helpful Resources</h2></li>
+        <li><%= link_to "TBA"%></li>
+        <li><%= link_to "TBA"%></li>
+        <li><%= link_to "TBA"%></li>
+        <li><%= link_to "TBA"%></li>
+      </ul>
     </div>
   </div>
 </div>
 
-
-
-  <footer class="text-muted">
-
-
-
-
-
-
-
-
-    <div id="scontainer">
-      <div id="innerone">
-        <div class="child">ok
-          <ul>
-          <li>Black tea</li>
-          <li>Green tea</li>
-        </ul>
-        </div>
-
-        <div class="child">ok
-          <ul>
-        <li>Black tea</li>
-        <li>Green tea</li>
-      </ul>
-        </div>
-        <div class="child">ok
-          <ul>
-        <li>Black tea</li>
-        <li>Green tea</li>
-      </ul>
-        </div>
-      </div>
-    </div>
-
-    <button class="btn btn-default btn-lg pull-xs-right">
-      <a href="#">Back to Top</a>
-      </button>
-
-
-
-
-  </footer>
-
-</div>
+</div><!--acontainer-->

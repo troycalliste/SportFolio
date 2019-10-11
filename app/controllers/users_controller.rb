@@ -1,46 +1,126 @@
-# encoding: utf-8
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  require 'openssl'
+  require 'open-uri'
+  require 'restclient'
 
 
 
   def index
     @users = User.all
   end
+  # def newtrade
+  #   # name = params[:name]
+  #   # tick = params[:tick]
+  #   # vol = params[:vol]
+  #   # price = params[:price]
+  #   # total = params[:total]
+  #   @trade = Trade.find(2)
+  #   name = "some thing"
+  #   tick = "AARL"
+  #   vol = 23
+  #   price = 201.10
+  #   total = 4029.90
+  #   # if Trade.where(ticker: params[:tick])
+  #   #   # dont create trade
+  #   #   @trade = Trade.where(ticker: params[:tick])
+  #   # else
+  #     # @trade1 = Trade.create(stock: name,
+  #     # ticker: tick,
+  #     # tradeprice: total,
+  #     # volume: vol,
+  #     # stockprice: price)
+  #
+  #     # @currentuser.wallet = @currentuser.wallet - @trade.tradeprice
+  #   # end
+  # end
+  def newtrade
+    # @this = "this"
+    # @this = Trade.find(2)
+    name = params[:name]
+    tick = params[:tick]
+    vol = params[:vol]
+    price = params[:price]
+    total = params[:total]
+    @currentuser = current_user
+    if Trade.where(ticker: params[:tick]).exists?
+      @trade = "This trade is here bro"
+    else  #graduate to using first_or_create
+      @trade = @currentuser.trades.create(stock: name,
+        ticker: tick,
+        tradeprice: total,
+        volume: vol,
+        stockprice: price)
+      @currentuser.wallet -=  @trade.tradeprice
+      @currentuser.save
+    end
+  end
+  def showtrade
+    #here i will get the company from ticker
+    #to show you current price in that orange
+  end
 
   # GET /users/1
   # GET /users/1.json
   def show
+
     @user = User.find(params[:id])
-    @trade = Trade.new
-    @reg = Region.all
-    @exch = Exchange.all
-    @comp = Company.all + Commodity.all
-    @camp = Company.all.pluck(:currentprice)
-    @comm = Commodity.all.pluck(:id)  #trade the first one   make sure its right
+    @trades = @user.trades.all
+    if current_user.id == params[:id].to_i
+      @iscurrentuser = true
+    else
+      @iscurrentuser = false
+    end
+    @idcurr = current_user.id
+    @par = params[:id]
+    @gain = @user.wallet - 10000
+    @gainpercent = (@user.wallet.to_f / 100.0) - 100.0
+    @us = User.order('wallet DESC').pluck(:id).index(@user.id)
+    Trade.highall
+    @order = @trades.order('change DESC')
+    @high = @order.first.change * 100
+    @low = @order.last.change * 100
+    sumarr = []
+    @trades.each do |t|
+      sum = t.currentprice * t.volume.to_f
+      sumarr << sum
+    end
+    @tp = (@user.wallet + sumarr.sum) - 10000.0
+    @held =  @trades.where.not(volume: 0).order('created_at DESC')
+    @oldest = @held.first.ticker
+    @newest = @held.last.ticker
+    # @trade = Trade.new
+    # @test = Company.search(params[:search]).paginate(page: params[:page], per_page: 30)
+    # @reg = Region.all
+    # @exch = Exchange.all
+    # @comp = Company.all + Commodity.all
+    # @camp = Company.all.pluck(:currentprice)
+    # @comm = Commodity.all.pluck(:id)  #trade the first one   make sure its right
 
-    @nokocomp = Company.first
-    @nokocomp.noko
-    @nokocomp.noko2
-    @nokocomp.noko3
-    @nokocomp.noko4
-    @nokocomp.noko5
-    @nokocomp.noko6
-     @trades = Trade.where(nil) # creates an anonymous scope
-     @trades = @trades.region_id(params[:region_id]) if params[:region_id].present?
-     @tradelongs = @trades.where(tradetype: "Long")
-     @tradeshorts = @trades.where(tradetype: "Short")
-     # @trade = Trade.where(user_id: params[:id])
-     # @trade.first.tradeprices   #going to do this for all
-     # @trade.first.tradeset
-
-     @alltrades = Trade.where.not(volume: nil, stockprice: nil)
-     @alltrades.each do |t|
-       t.tradeprices
-      end
+    # @nokocomp = Company.first
+    # @nokocomp.noko
+    # @nokocomp.noko2
+    # @nokocomp.noko3
+    # @nokocomp.noko4
+    # @nokocomp.noko5
+    # @nokocomp.noko6
+    #  @trades = Trade.where(nil) # creates an anonymous scope
+    #  @trades = @trades.region_id(params[:region_id]) if params[:region_id].present?
+    #  @tradelongs = @trades.where(tradetype: "Long")
+    #  @tradeshorts = @trades.where(tradetype: "Short")
+    #  # @trade = Trade.where(user_id: params[:id])
+    #  # @trade.first.tradeprices   #going to do this for all
+    #  # @trade.first.tradeset
+     # @alltrades = Trade.where.not(volume: nil, stockprice: nil)
+     # @alltrades.each do |t|
+     #   t.tradeprices
+     #  end
      # @comptrade = @trade.first      #we're talking about trade 2
-
+     # @bigcomp = @test.order('changepercent DESC').limit(20)
+     # respond_to do |format|
+     #   format.js
+     #   format.html
+     # end
 
    end
 
@@ -60,6 +140,10 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    userip = request.remote_ip
+    results = Geocoder.search(userip)
+    @user.country = results.first.country
+
 
     respond_to do |format|
       if @user.save
@@ -124,12 +208,12 @@ class UsersController < ApplicationController
     @tradelongs = @trades.where(tradetype: "Long")
     @tradeshorts = @trades.where(tradetype: "Short")
 
-   render action: 'show'
-  rescue StandardError
-    redirect_to "/admin"
+      render action: 'show'
+    rescue StandardError
+     redirect_to "/admin"
 
-   raise
- end
+      raise
+     end
 
   end
   # DELETE /users/1
@@ -142,10 +226,10 @@ class UsersController < ApplicationController
     end
   end
   def preview
-
+       @test = Company.search(params[:searched])
   end
 
-  private
+
     # Use callbacks to share common setup or constraints between actions.
 
     def set_user

@@ -1,13 +1,22 @@
-<%= will_paginate @test %>
-<table id="myTable">
-  <tr>
-    <th>Symbol</th>
-    <th>Name</th>
-  </tr>
-  <% @test.each do |c| %>
-  <tr>
-    <td class="tick"><%= link_to c.ticker, "https://www.nasdaq.com/symbol/#{c.ticker}" %></td>
-    <td><%= c.otherdata %></td>
-  </tr>
-<% end %>
-</table>
+
+
+
+
+<div class="flickr_pagination">
+  <div class="page_info">
+    <%= page_entries_info @test %>
+  </div>
+  <%= will_paginate @test, :container => false %>
+  <table id="myTable">
+    <tr>
+      <th>Symbol</th>
+      <th>Name</th>
+    </tr>
+    <% @test.each do |c| %>
+    <tr>
+      <td class="tick"><%= link_to c.ticker, "https://www.nasdaq.com/symbol/#{c.ticker}" %></td>
+      <td class="ctitle"><%= c.otherdata %></td>
+    </tr>
+  <% end %>
+  </table>
+</div>

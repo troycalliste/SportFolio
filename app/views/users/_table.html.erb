@@ -1,8 +1,5 @@
 <div class="wrapmid">
 
-
-
-
   <div class="recenttrades">
      <div class="cardheader">Recent Trades <span class="track">live tracker</span></div>
      <% @user.trades.order("created_at").last(3).each do |t| %>
@@ -68,14 +65,16 @@
                     </ul>
                     <ul class="careertrades">
                       <li>Companies Held <%= @user.trades.distinct.count('stock') %></li>
-                    
+
                       <li>Profit  <%= @user.trades.sum(:stockprice) - @user.trades.sum(:currentprice) %></li>
                     </ul>
                   </div>
 
 
                   <div class="orangetrending">
-
+                 <%= @idcurr %> <br>
+                 <%= @iscurrentuser %> <br>
+                 <%= @par %>
                 </div>
 
 
@@ -85,8 +84,3 @@
 
 
     </div>
-</div>
-
-
-</div>
-</div>

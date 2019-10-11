@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
 
 
+  get 'trades/findcompany', to: "trades#findcompany"
+  get 'users/newtrade', to: "users#newtrade"
   resources :examples
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -33,7 +35,7 @@ Rails.application.routes.draw do
   #
   # get 'companies/subscribe', to: "companies#sub"
 
-  # get 'staticpages/home'
+
 
   get 'staticpages/help'
 
@@ -51,6 +53,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :trades
   end
+
 
 
 

@@ -8,17 +8,17 @@ class CompaniesController < ApplicationController
   # GET /companies.json
   def index
     @companies = Company.first(10)   #will show by Company.order('latestvolume DESC').limit(25)
-    @test = Company.search(params[:search]).paginate(page: params[:page], per_page: 10)
+    @test = Company.search(params[:search]).paginate(page: params[:page], per_page: 30)
     @bigcomp = @test.order('changepercent DESC').limit(20)
     respond_to do |format|
       format.js
       format.html
     end
   end
-
   # GET /companies/1
   # GET /companies/1.json
   def show
+
   end
 
   # GET /companies/new
@@ -35,7 +35,6 @@ class CompaniesController < ApplicationController
   # POST /companies.json
   def create
     @company = Company.create!(company_params)
-
   end
 
   # PATCH/PUT /companies/1

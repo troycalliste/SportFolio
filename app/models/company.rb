@@ -26,23 +26,25 @@ class Company < ApplicationRecord
             else
              self.changepercent = 0
             end
-
   }
  end
  def crrntprices
 
-     RestClient.get("https://api.iextrading.com/1.0/stock/#{self.ticker}/quote") { |response, request, result, &block|
+     RestClient.get("https://api.iextrading.com/1.0/tops/last?symbols=#{self.ticker}") { |response, request, result, &block|
             case response.code
             when 200                #revise this to an if else statement.  also maybe put all attribute updates in a single method
               data = JSON.parse(response.body)
-              self.currentprice = data["latestPrice"]
+              self.currentprice = data[0]["price"].to_f
             when 404
               self.currentprice = 0
              else
               self.currentprice = 0
              end
-
+             self.save
    }
+ end
+ def self.updatecrrnt
+  Company.all.each {|c| c.crrntprices}
  end
  def volume
 
@@ -56,9 +58,9 @@ class Company < ApplicationRecord
               else
                self.volume = 0
           end
-
     }
   end
+
   def updatechanges
     @test = Company.order('changepercent DESC').limit(20)
     @test.each do |c|

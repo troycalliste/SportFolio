@@ -1,6 +1,333 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.usercontainer {
+  margin: 0;
+  padding: 0;
+  font-family: arial, serif;
+  // background-image: url("8647.jpg");
+  background-image: url("nyc.jpg");
+  position: absolute;
+  left: 0px;
+  top: 0;
+  height: 300px;
+  width: 100vw;
+  background-size: cover;
+  background-position: center;
+  border-bottom: 4px solid #656565;
+}
+
+.offsetsmpro {
+  width: 1100px;
+  position: relative;
+  left: 50%;
+}
+.userboxtop {
+  width: 1100px;
+  height: 150px;
+  background-color: #292929;
+  // margin: 0 auto;
+  top: 220px;
+  left: -50%;
+  position: relative;
+  -webkit-box-shadow: -1px 5px 10px -8px rgba(0,0,0,0.79);
+box-shadow: -1px 5px 10px -8px rgba(0,0,0,0.79);
+}
+.userboxtopha {
+  width: 1100px;
+  height: 100px;
+  vertical-align: center;
+}
+.tolo {
+  display: inline-block;
+  margin-top: 25px;
+  margin-left: 15px;
+  color: white;
+
+}
+.uname {
+  font-family: "Uni";
+  font-size: 3rem;
+  font-weight: 850;
+}
+.toro {
+  display: inline-block;
+  float: right;
+  // background-color: red;
+  height:100%;
+  margin-right: 15px;
+  // margin-top: 15px;
+  line-height: 100px;
+  vertical-align: center;
+  font-family: arial;
+  color:white;
+}
+.userboxle {
+  width: 820px;
+  height: 230px;
+  background-color: #292929;
+  // margin: 0 auto;
+  top: 280px;
+  left: -50%;
+  position: relative;
+
+}
+.lifetimetop {
+  width: 100%;
+  height: 15%;
+}
+.lifetimelast {
+  width: 100%;
+  height: 35%;
+  background-color: rgba(255,255,255,.07);
+  display: flex;
+}
+.lifetimemain {
+  width: 100%;
+  height: 50%;
+}
+.ltlast {
+  min-width: 10%;
+  height: 100%;
+  display: flex;
+  font-size: 30px;
+  color: lightgreen;
+  line-height: 70px;
+  text-align: center;
+  margin-left: 10px;
+  overflow: auto;
+}
+#lastbold {
+  color: white;
+  font-weight: bold;
+  font-size: 22px;
+  margin-left: 10px;
+
+}
+.fa-history:before {
+  line-height: 70px;
+}
+
+
+.ltrest {
+  min-width: 10%;
+  height: 100%;
+  overflow: auto;
+  padding: 0px 20px;
+}
+.ltrest:last-child {
+  // background-color: blue;
+
+}
+.datetop {
+  height: 45%;
+  width: 100%;
+  color: rgba(255, 255, 255, .30);
+  font-weight: 600;
+  font-size: 12px;
+  position: relative;
+
+}
+.ticktop {
+  height: 45%;
+  width: 100%;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 20px;
+  margin-left: 5px;
+}
+.datm {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.lifetimetab {
+  height: 100%;
+  min-width: 10%;
+  max-width: 70px;
+  text-align: center;
+  border-bottom: 2px solid orange;
+  position: relative;
+
+}
+.lifetimetabsp {
+  color: orange;
+  font-size: 14px;
+  font-weight: 900px;
+  position: absolute;
+  bottom: 6px;
+  right: 10px;
+}
+.mainstat {
+  margin-top: 10px;
+  height: 70%;
+  width: 20%;
+  margin-left: 15px;
+  border-bottom: 1px solid red;
+  display: inline-block;
+  position: relative;
+}
+.mainstattop {
+  height: 20%;
+  width: 100%;
+  // background-color: orange;
+  color: rgba(255, 255, 255, .20);
+
+}
+.mainstatbottom {
+  height: 40%;
+  width: 100%;
+  // font-family: "Uni";
+  // font-size: 14px;
+  // color: white;
+  background-color: white;
+ position: absolute;
+ bottom: 5px;
+}
+
+
+.userboxlow {
+  width: 820px;
+  height: 290px;
+  background-color: #292929;
+  // margin: 0 auto;
+  top: 320px;
+  left: -50%;
+  position: relative;
+}
+
+.uboxlowtop {
+  width: 100%;
+  height: 16%;
+  border-bottom: 1px solid white;
+  line-height: 46px;
+}
+.uboxlowtop span {
+  margin-left: 10px;
+  color: orange;
+  font-size: 16px;
+}
+
+.uboxlowmid {
+  width: 100%;
+  height: 80%;
+  // border-bottom: 1px solid orange;
+  line-height: 46px;
+}
+.uboxlow{
+ height: 60px;
+ width: 30%;
+ display: inline-block;
+ border-bottom: 3px solid orange;
+ border-radius: 2px;
+ overflow: hidden;
+ position: relative;
+ margin-left: 14px;
+}
+.uboxtitle {
+  width: 100%;
+  height: 50%;
+  // background-color: red;
+  position: absolute;
+  top: -8px;
+  font-size: 10px;
+  font-weight: bold;
+}
+.uboxvalue {
+  width: 100%;
+  height: 50%;
+  // background-color: orange;
+  color: white;
+  font-size: 20px;
+  font-weight: 900;
+  margin-top: 11px;
+}
+
+.viewall {
+  height: 600px;
+  width: 600px;
+  // background-color: green;
+  position: relative;
+  top: 350px;
+  left:-50%;
+  background-color: #292929;
+}
+.viewallbar {
+  height: 40px;
+  width: 100%;
+  background-color: #b2b2b2;
+
+}
+.rtrade {
+  color: black;
+  font-family: "Burbank";
+  font-weight: 900;
+  font-size: 25px;
+  padding-top: 10px;
+  margin-left: 10px;
+}
+.viewallrec {
+  width: 100%;
+  height: 40px;
+  // display: flex;
+}
+.viewallrecboxupper {
+  width: 15%;
+  height: 100%;
+  display: inline-block;
+  overflow-x: hidden;
+  color: black;
+}
+.viewallrecbox {
+  width: 15%;
+  height: 100%;
+  display: inline-block;
+  overflow-x: hidden;
+  line-height: 35px;
+}
+.tmv {
+  width: 100%;
+  height: 20px;
+  background-color: gray;
+}
+.vbb {
+  color: white;
+  font-size: 20px;
+  font-weight: 900;
+  text-align: center;
+  overflow: hidden;
+
+}
+.vbr {
+  float: right;
+}
+.vbrg {
+  float: right;
+  color: green;
+}
+.whh {
+  color: white;
+}
+.viewallrec:nth-child(odd) {
+background-color: rgba(255, 255, 255, .10);
+}
+.spc {
+  width: 800px;
+  height: 2200;
+  position: relative;
+  background-color: orange;
+}
+
+
+
+
+
+
+
+
+
+
 .backgroundimg {
   margin: 0;
   padding: 0;
@@ -8,19 +335,16 @@
   // background-image: url("8647.jpg");
   background-image: url("backgrnd.jpg");
   background-size: 1470px 780px;
-
   // padding-bottom: 1700px;
   // height: 550px;
   background-repeat: no-repeat;
   // background-attachment: fixed;
-
   background-position: 0px -250px;
 }
 .lowers {
   padding-top: 1000px;
   height: 1800px;
   background-color: green;
-
 }
 .tbl tr:nth-child(2){
   counter-reset: rowNumber;
@@ -35,4 +359,40 @@
 }
 .tbl{
  width: 400px;
+}
+.myTrade {
+  background-color: white;
+  width: 600px;
+  margin: 0 auto;
+}
+.pvtick {
+ color: black;
+ cursor: pointer;
+}
+.pvctitle {
+   color: black;
+   cursor: pointer;
+}
+.pvtick:hover {
+ color: white;
+
+}
+.pvctitle:hover {
+   color: white;
+
+}
+
+.tap:hover {
+  background-color: blue;
+}
+.lmyTrade {
+  width: 400px;
+}
+#isearch:focus, #isearch:active {
+  outline: none;
+  border: none;
+}
+input:focus, input:active {
+  outline: none;
+  border: none;
 }

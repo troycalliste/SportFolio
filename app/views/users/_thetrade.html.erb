@@ -1,18 +1,21 @@
+  <div class="compIndex">
+  <div id="companies_searchw" action="http://localhost:3000/users/3" accept-charset="UTF-8" method="get">
+  <div class="csearch">
+     <%= text_field_tag :search, 'Enter your search query here', id: "isearch" %>
+   </div>
+   </div>
+<div class="myTrade">
+</div>
+<br>
+<%= number_field_tag 'quantity', id: "ivolume" %>
+<br>
+<br>
+<%= number_field_tag 'iprice' %>
+<br>
+<br>
+<div>$: <%= number_field_tag 'total' %></div>
+<div class="makeTrade"></div>
 
-<%= form_with(model: [ @user, Trade.new ]) do |form| %>
 
 
-  <%= form.text_field :stock, collection: @comp %>
-  <%= form.number_field :company_id %>
-  <%= form.number_field :commodity_id, collection: @comm %>
-  <%= form.number_field :region_id, collection: @reg %>
-  <%= form.text_field :tradetype %>
-  <%= form.number_field :stockprice %>
-  <%= form.number_field :volume %>
-
-    <%= form.submit %>
   </div>
-<% end %>
-<%# <%= link_to "create trade", new_user_trade_path%> %>
-
-<%=  select("post", "person_id", Company.all.collect {|p| [ p.id, p.id ] }, { include_blank: true })%>

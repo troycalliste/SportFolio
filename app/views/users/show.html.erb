@@ -1,120 +1,277 @@
-
- <div class="backgroundimg">
-     <div class="userbox">
-       <div class="userlast">
-        <% if @user %>
-         <div class="ava"><%= image_tag @user.avatar.url(:thumb) %></div>
-         <div class="usersname"> <%= @user.email %> </div>
-         <%= @user.wallet %>
-         <div class="lastonline"><%= "Last Online: #{@user.last_seen}" %>
-           <% @alltrades.each do |t| %>
-            <%= t.id %>
-            <% end %>
-          </div>
-          <% @trade.currentprices %>
-
+<div class="usercontainer">
+<div class="homenav">
+<div class="offset">
+<div class="centerset">
+  <div class="topset">
+  <div class="logo">
+      <%= link_to "SportFolio", root_path, id: "homelogo" %>
+  </div>
+  <div class="searchhold">
+     <div class="inputsm">
+       <div class="refSearch"><i class="fa fa-search"></i></div>
+       <input type="text" id="inputTxt" placeholder="Search">
+     </div>
+  </div>
+  <div class="signup">
+          <% if user_signed_in? %>
+          <%= link_to "Edit profile", edit_user_registration_path %> |
+          <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
           <% else %>
-           <h3>There are no stats for this account… Make some trades!</h3>
+          <i class="fab fa-facebook-f"></i>
+           <i class="fas fa-user"></i><%= link_to "Sign up", new_user_registration_path  %> |
+           <%= link_to "Login", new_user_session_path  %>
+          <% end %>
+  </div>
+  </div> <!-- topset -->
+  <div class="bottomset">
 
-            <% end %>
+    <ul class="setlist">
+      <li>COMPANY</li>
+      <li>NEWS</li>
+      <li>LEADERBOARD</li>
+      <% if user_signed_in? %>
+      <li>COMPANY</li>
+      <li>GO PREMIUM</li>
 
-      </div>
-      <ul class="usernavs">
-              <li><%= link_to "Overview" %></li>
-              <li><%= link_to "Longs" %> </li>
-              <li><%= link_to "Shorts" %></li>
-              <li><%= link_to "Friends" %></li>
-      </ul>
-      <div class="lowerbox">
-        <ul class="lowerselect">
-        <li><div class="region">Region</div><div class="regselect"><%= select_tag 'user_id', options_from_collection_for_select(@reg, 'id', 'name'), include_blank: "Choose Region",  :onchange => "window.location.replace('?region_id='+this.value);" %></div></li>
+      <% else %>
+      <li>WHY SIGN UP</li>
+      <li>GO PREMIUM</li>
 
-        <li><div class="region">Exchange</div><div class="regselect"><%= select_tag 'user_id', options_for_select(@exch.collect{ |u| [u.name] }) %></div></li>
-
-        <li>
-
-
-        <% if @user %>
-          <%= form_with url: user_trades_path(@user), method: :get, local: true do |form| %>
-
-            <%= select_tag(:term, options_for_select([['2018', 1], ['2017', 2]])) %>
-
-           <% form.submit %>
-           <% end %>
-
-        <% end %>
-
-
-
-
-
-
-          </li>
-
-       </ul>
-
-      </div>
-<div>
-<%= render "table" %>
+      <% end %>
+    </ul>
+  </div>
+  </div>  <!-- centerset -->
 </div>
+</div>   <!-- homenav -->
+<div  class="offsetsmpro">
+  <div class="userboxtop">
+    <div class="userboxtopha">
+      <div class="tolo uname"><%= @user.name %></div>
+     <div class="tolo"><%= "United States" %> </div>
+     <div class="toro"><%= "Last Online: #{@user.last_seen}" %></div>
+    </div>
+  </div>
+
+  <div class="userboxle">
+    <div class="lifetimetop">
+      <div class="lifetimetab">
+        <span class="lifetimetabsp">LIFETIME</span>
+        </div>
+      </div>
+
+    <div class="lifetimelast">
+      <div class="ltlast">
+        <i class="fas fa-history"></i>
+        <span id="lastbold">Last 3 Trades:
+      </div>
+      <% @trades.last(3).each do |t| %>
+      <div class="ltrest">
+        <div class="datetop">
+          <span class="datm"><%= t.updated_at.strftime("%m/%d/%Y") %></span>
+        </div>
+        <div class="ticktop">
+          <%= t.ticker %>
+        </div>
+      </div>
+      <% end %>
+    </div> <!-- lifetimelast -->
+    <div class="lifetimemain">
+      <div class="mainstat">
+        <div class="mainstattop">
+          TOTAL UNITS
+        </div>
+        <div class="mainstatbottom">
+          <%= @user.wallet %>
+        </div>
+      </div>
+      <div class="mainstat">
+        <div class="mainstattop">
+          COMPANIES HELD
+        </div>
+        <div class="mainstatbottom"><%= @user.trades.count %></div>
+      </div>
+      <div class="mainstat">
+        <div class="mainstattop">
+             OVERALL GAIN/LOSS
+        </div>
+        <div class="mainstatbottom">
+          <%= @gain %>
+        </div>
+      </div>
+      <div class="mainstat">
+        <div class="mainstattop">
+            GAIN PERCENT
+        </div>
+        <div class="mainstatbottom">
+          <%= "#{@gainpercent}%" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="userboxlow">
+
+    <div class="uboxlowtop">
+      <span>OVERVIEW</span>
+    </div>
+    <div class="uboxlowmid">
+
+    <div class="uboxlow">
+      <span class="uboxtitle"><%= Title.find(1).text %></span>
+      <div class="uboxvalue"><%= @us %></div>
+    </div>
+    <div class="uboxlow">
+      <span class="uboxtitle"><%= Title.find(2).text %></span>
+      <div class="uboxvalue"><%= @user.country %></div>
+    </div>
+    <div class="uboxlow">
+      <span class="uboxtitle"><%= Title.find(3).text %></span>
+      <div class="uboxvalue"><%= @user.tradecount %></div>
+    </div>
+    <div class="uboxlow">
+      <span class="uboxtitle"><%= Title.find(4).text %></span>
+      <div class="uboxvalue"><%= @high %></div>
+    </div>
+    <div class="uboxlow">
+      <span class="uboxtitle"><%= Title.find(5).text %></span>
+      <div class="uboxvalue"><%= @low %></div>
+    </div>
+    <div class="uboxlow">
+      <span class="uboxtitle"><%= Title.find(6).text %></span>
+      <div class="uboxvalue"><%= @tp %></div>
+    </div>
+    <div class="uboxlow">
+      <span class="uboxtitle"><%= Title.find(7).text %></span>
+      <div class="uboxvalue"><%= @oldest %></div>
+    </div>
+    <div class="uboxlow">
+      <span class="uboxtitle"><%= Title.find(8).text %></span>
+      <div class="uboxvalue"><%= @newest %></div>
+    </div>
+    <div class="uboxlow">
+      <span class="uboxtitle"><%= Title.find(9).text %></span>
+      <div class="uboxvalue"><%= @user.created_at.strftime("%m/%d/%Y") %></div>
+    </div>
+
+    </div>
+  </div><!-- userboxlow -->
+  <div class="viewall">
+    <div class="viewallbar"><div class="rtrade">RECENT TRADES</div></div>
+    <div class="tmv">
+       <div class="viewallrecboxupper ">Company</div>
+       <div class="viewallrecboxupper">Type</div>
+       <div class="viewallrecboxupper">Created  </div>
+       <div class="viewallrecboxupper vbr">Volume</div>
+       <div class="viewallrecboxupper vbr">Price</div>
+    </div>
+    <% @trades.limit(10).each do |t| %>
+    <div class="viewallrec">
+       <div class="viewallrecbox vbb"><%= t.ticker %></div>
+       <div class="viewallrecbox whh"><%# t.type %></div>
+       <div class="viewallrecbox whh"><%= "#{time_ago_in_words(t.created_at)} ago"%></div>
+       <div class="viewallrecbox vbr whh"><%= t.volume %></div>
+       <div class="viewallrecbox vbrg"><%= t.currentprice %></div>
+    </div>
+    <% end %>
+  </div>
+
+
+
+
+
+ </div>  <!-- offsetsm -->
+</div>  <!-- containerss -->
+
+<div class="spc">
 </div>
-<% if @user %>
+
+
+  <script>
+   let functionIsRunning = false;
+   let companyTick;
+      $(document).on("keyup", "#companies_searchw input", function() {
+          searchtxt = $("#companies_searchw input").val();
+          if (functionIsRunning == false) {
+          functionIsRunning = true;
+          setTimeout(function(){
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:3000/users/preview",
+            data: { searched: searchtxt},
+            success: function(response) {
+
+                result = $(response).find(".lmyTable");
+                $(".myTrade").empty().append(response);
+
+                $(".tap").click(function(){
+                  let companyTick = $( this ).find( ".pvtick" ).text()
+                   companyName = $( this ).find( ".pvctitle" ).text()
+                   console.log(companyTick)
+
+                  $("#companies_searchw input").val(companyName);
+                  $(".myTrade").empty();
+                  $.ajax({
+                      url: "http://localhost:3000/trades/findcompany",
+                      data: {company: companyTick},// all attributes of created and type createorbyorsell},
+                      success: function(response){ // put a set timeout and give time to load
+                        setTimeout(function(){
+                          price = $( response ).filter("#msm")
+                        $("#iprice").val($(price).text())
+                        console.log($(price))
+                      }, 500) //end of setTimeout
+
+                      $(".makeTrade").click(
+                      function() {
+                        //before we get all attribute  inputs
+                        //we need to find thr company based on name  // currentprice of company
+                        //  don't allow user to surpass wallet -- send a red notification
+
+                         company = $("#isearch").val()
+                         vol = $('#quantity').val()
+                         price = $("#iprice").val();
+                         total = $("#total").val();
+                         console.log("tick: " + companyTick)
+                         console.log("company: " + company)
+                         console.log("vol: " + vol)
+                         console.log("p: " + price)
+                         console.log("total: " + total)
+                      $.ajax({
+                          url: "http://localhost:3000/users/newtrade",
+                          data: {name: company, vol: vol, price: price, total: total, tick: companyTick },// all attributes of created and type createorbyorsell},
+                          success: function(response){
+                            info = $(response).filter(".info")
+                            //send notification of worked or did not work
+                            // it controller it either saves or doesn't saved   // due to cost
+                           $('.orangetrending').empty().append($(info).text())
+                        }
+                       });
+                      }
+                      ); //end of maketrade
 
 
 
-<div class="lowers">
- <p id="notice"><%= notice %></p>
-<p><%= @user.email %></p>
-<p><%= @user.last_seen %></p>
+                    } // end of ajax
+                  })
+                }) //end of pvctitle click
 
-<% if @user == current_user %>
+              }// end of success
 
-<%= link_to 'Edit', edit_user_path(@user) %>
-<%= link_to 'Back', users_path %>
-<%= link_to 'Sign out', destroy_user_session_path, :method => :delete %>
+            }); //end of ajax
+          }, 1000)
+            functionIsRunning = false
+          } //end of if
 
+          }); //end of document keyup
 
-<% end %>
+          $( "#quantity" ).keyup(function() {
+          num = $(this).val();
+          price = $("#iprice").val();
+          p = parseInt(price);
+          total = num * p;
+          $("#total").val(total) ;
+          console.log(total, num, p)
+        })
+//on submit
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<% @user.trades.each do |trade| %>
-<%= trade.stock %>
-<%= trade.id %>
-
-<%= link_to 'Destroy Comment', [trade.user, trade],
-             method: :delete,
-             data: { confirm: 'Are you sure?' } %>
-<% end %>
-
-<%= render "thetrade" %>
-<%= render "leaderboard" %>
-
- <% end %>
-<% # render "thestage" %>
-
-<p><%= @trades.where(tradetype: "Long").select(:stock).map(&:stock).uniq.count %>
-
-
-</p>
-<%= link_to 'Edit' %>
-
-
-
-
-
-<div>
+    </script>

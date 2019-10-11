@@ -14,7 +14,26 @@ class Trade < ApplicationRecord
     self.tradeprice = self.stockprice * self.volume
 
    end
-
+  def highslows
+       RestClient.get("https://cloud.iexapis.com/v1/stock/#{self.ticker}/quote?token=sk_4e6137c283cb4a209f4bd8ebbe9176f0") { |response, request, result, &block|
+              case response.code
+              when 200
+                data = JSON.parse(response.body)
+                self.change = data["changePercent"]
+                self.currentprice = data["latestPrice"]
+              when 404
+                self.change = 0
+               else
+                self.change = 0
+               end
+     }
+  end
+  def self.highall
+    Trade.all.each do |t|
+      t.highslows
+      t.save
+    end
+  end
    def currentprices   # to get company current price to match trade current price
      if self.company_id
        @company = Company.find(self.company_id)

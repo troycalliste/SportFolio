@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190301233948) do
+ActiveRecord::Schema.define(version: 20191010201132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,6 +160,12 @@ ActiveRecord::Schema.define(version: 20190301233948) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "titles", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "text"
+  end
+
   create_table "tradeinfos", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -167,6 +173,7 @@ ActiveRecord::Schema.define(version: 20190301233948) do
     t.datetime "selldate"
     t.string "stockname"
     t.integer "stockvolume"
+    t.decimal "currentprice"
   end
 
   create_table "trades", force: :cascade do |t|
@@ -184,6 +191,9 @@ ActiveRecord::Schema.define(version: 20190301233948) do
     t.string "one"
     t.integer "commodity_id"
     t.decimal "currenttradeprice"
+    t.string "ticker"
+    t.decimal "tab"
+    t.decimal "change"
     t.index ["commodity_id"], name: "trade_commodity_id"
     t.index ["company_id"], name: "trade_company_id"
     t.index ["user_id"], name: "index_trades_on_user_id"
@@ -223,6 +233,8 @@ ActiveRecord::Schema.define(version: 20190301233948) do
     t.decimal "commprofit"
     t.decimal "totalprofit"
     t.string "imageurl"
+    t.string "country"
+    t.string "tradecount"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

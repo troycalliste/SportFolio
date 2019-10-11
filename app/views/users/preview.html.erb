@@ -1,4 +1,13 @@
-<h1>ALLO</h1>
-<%= @tradeone.tradeprice %>
-
-<%= link_to "back", {:action => :revise} %>
+  <table class="lmyTable">
+    <tr>
+      <th>Symbol</th>
+      <th>Name</th>
+    </tr>
+    <div class="rmplc"><% @test.limit(10).each do |c| %>
+    <tr class="tap">
+      <td class="pvtick"><%= link_to c.ticker, "https://www.nasdaq.com/symbol/#{c.ticker}" %></td>
+      <td class="pvctitle"><%= c.otherdata %></td>
+    </tr>
+  <% end %>
+  </div>
+  </table>

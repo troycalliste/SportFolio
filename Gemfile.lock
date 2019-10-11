@@ -147,6 +147,7 @@ GEM
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
+    geocoder (1.5.2)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     google-api-client (0.10.3)
@@ -388,11 +389,12 @@ DEPENDENCIES
   devise
   devise_lastseenable
   figaro
+  geocoder
   google-api-client (~> 0.10.3)
   gravtastic
   jbuilder (~> 2.5)
   jquery-rails
-  nokogiri (~> 1.6, >= 1.6.8)
+  nokogiri
   omniauth-facebook
   omniauth-google-oauth2 (~> 0.4.1)
   openssl

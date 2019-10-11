@@ -13,42 +13,10 @@
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-      <script src="staticpages.js"></script>
+
+
   </head>
-<header>
 
-
-    <div class="main">
-      <div class="logo">
-      <%= link_to "SportFolio", root_path, id: "homelogo" %>
-      </div>
-        <div class="signup">
-          <% if user_signed_in? %>
-          <%= link_to "Edit profile", edit_user_registration_path %> |
-          <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
-          <% else %>
-           <%= link_to "Sign up", new_user_registration_path  %> |
-           <%= link_to "Login", new_user_session_path  %>
-          <% end %>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-        </div>
-        <ul class="nav-items">
-
-                <li class="search">
-                  <div class="space">
-                    <%= form_with url: '/search', method: :get, local: true, class: "searchy" do |f| %>
-                    <%= f.text_field :q, id: :q %>
-                    <button style='width:40px;'>
-                       <i class="icon-share-alt icon-white"></i>
-                      </button>
-                    <% end %>
-                  </div>
-                <li>
-        </ul>
-    </div>
-
-</header>
   <body>
     <%= yield %>
     <script id="dsq-count-scr" src="//sportfolio.disqus.com/count.js" async></script>

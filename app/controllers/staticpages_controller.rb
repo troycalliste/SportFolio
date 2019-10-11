@@ -11,6 +11,7 @@ class StaticpagesController < ApplicationController
 
   end
   def home
+    News.save_data_from_api
     @companies = Company.all
     @bigcomp = @companies.order('changepercent DESC').limit(20)
     @company = Company.first
@@ -28,11 +29,11 @@ class StaticpagesController < ApplicationController
   end
 
   def leaderboard
-    @users = User.all.paginate(page: params[:page], per_page: 2)
+    @users = User.order("totalprofit DESC").paginate(page: params[:page], per_page: 3)
     @numunrounded = User.count / 2
     @num = @numunrounded.round
-    @offset = @users.order("totalprofit DESC").offset(@num)
-
+    @userspag = @users.limit(@num)
+    @offset = @users.offset(@num)
   end
 
 
