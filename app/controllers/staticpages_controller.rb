@@ -11,7 +11,7 @@ class StaticpagesController < ApplicationController
 
   end
   def home
-    News.save_data_from_api
+    # News.save_data_from_api
     @companies = Company.all
     @bigcomp = @companies.order('changepercent DESC').limit(20)
     @company = Company.first
