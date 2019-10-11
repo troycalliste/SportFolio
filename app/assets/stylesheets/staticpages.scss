@@ -10,15 +10,15 @@ body {
 }
 @font-face {
     font-family: "Burbank";
-    src: url("fonts/Burbank.otf");
+    src: url("fonts/Burbank.otf") format("opentype");
 }
 @font-face {
     font-family: "Product";
-    src: url("fonts/Product.ttf");
+    src: url("fonts/Product.ttf") format('truetype');
 }
 @font-face {
     font-family: "Uni";
-    src: url("fonts/Uni.otf");
+    src: url("fonts/Uni.otf") format("opentype");
 }
 
 .containerss {
@@ -637,7 +637,7 @@ opacity: 1;
 }
 @font-face {
     font-family: "Digitalis";
-    src: url("fonts/DIGITALI.TTF");
+    // src: url("fonts/DIGITALI.TTF");
 }
 .nav-items a {
     background-color: transparent;
