@@ -9,6 +9,9 @@ class UsersController < ApplicationController
   def index
     @users = User.all
   end
+  def trade
+    # current_user
+  end
   # def newtrade
   #   # name = params[:name]
   #   # tick = params[:tick]
@@ -37,24 +40,70 @@ class UsersController < ApplicationController
   def newtrade
     # @this = "this"
     # @this = Trade.find(2)
-    name = params[:name]
-    tick = params[:tick]
-    vol = params[:vol]
-    price = params[:price]
-    total = params[:total]
-    @currentuser = current_user
-    if Trade.where(ticker: params[:tick]).exists?
-      @trade = "This trade is here bro"
-    else  #graduate to using first_or_create
-      @trade = @currentuser.trades.create(stock: name,
-        ticker: tick,
-        tradeprice: total,
-        volume: vol,
-        stockprice: price)
-      @currentuser.wallet -=  @trade.tradeprice
-      @currentuser.save
-    end
-  end
+
+#
+  # name = "Apple Inc. - Common Stock"
+  # tick = "AAPL"
+  # vol = 90
+  # price = 243.42
+  # total = 22320
+  # type = "Sell"
+  name = params[:name]
+  tick = params[:tick]
+  vol = params[:vol].to_i
+  price = params[:price].to_f
+  total = params[:total].to_f
+  type = params[:type]
+  tc = "Trade Complete"
+    if type == "Buy" # IF ONE START 11111111111111
+
+      @currentuser = current_user
+      w = @currentuser.wallet
+        if Trade.where(ticker: params[:tick]).exists?
+          if w > total
+            @trade = Trade.where(ticker: params[:tick]).first
+            @trade.volume += vol
+            @trade.save
+            @currentuser.wallet -=  total
+            @currentuser.save
+            @text = tc
+          elsif w < total
+            @text = "You do not have enough units to make this trade."
+          end
+        else  #graduate to using first_or_create
+          @trade = @currentuser.trades.create(stock: name,
+           ticker: tick,
+           tradeprice: total,
+           volume: vol,
+           stockprice: price)
+          @currentuser.wallet -=  total
+          @currentuser.save
+          @text = tc
+        end
+    else   # ELSE ONE START 11111111111111
+      @currentuser = current_user
+      w = @currentuser.wallet
+     if Trade.where(ticker: params[:tick]).exists?  # IF TWO START 222222222222
+       if Trade.where(ticker: params[:tick]).first.volume >= vol
+         @trade = Trade.where(ticker: params[:tick]).first
+         @trade.volume -= vol
+         @trade.save
+         @currentuser.wallet +=  total
+         @currentuser.save
+         @text = tc
+      else
+        @text = "You do not have enough shares to make this trade."
+      end
+    else   # ElSE TWO START 222222222222
+       @text = "Could not complete trade. You do not have enough shares in this company."
+     end  # IF TWO END 222222222222
+   end # IF ONE END 11111111111111
+
+
+    end # end of method
+
+
+
   def showtrade
     #here i will get the company from ticker
     #to show you current price in that orange
@@ -78,8 +127,8 @@ class UsersController < ApplicationController
     @us = User.order('wallet DESC').pluck(:id).index(@user.id)
     Trade.highall
     @order = @trades.order('change DESC')
-    @high = @order.first.change * 100
-    @low = @order.last.change * 100
+    @high = 0  # @order.first.change * 100  ADD MORE TRADES THEN UNCOMMENT
+    @low = 0    #@order.last.change * 100
     sumarr = []
     @trades.each do |t|
       sum = t.currentprice * t.volume.to_f

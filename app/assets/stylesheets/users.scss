@@ -245,13 +245,14 @@ box-shadow: -1px 5px 10px -8px rgba(0,0,0,0.79);
 }
 
 .viewall {
-  height: 600px;
+  height: 400px;
   width: 600px;
   // background-color: green;
   position: relative;
   top: 350px;
   left:-50%;
   background-color: #292929;
+  overflow: hidden;
 }
 .viewallbar {
   height: 40px;
@@ -318,11 +319,183 @@ background-color: rgba(255, 255, 255, .10);
   position: relative;
   background-color: orange;
 }
+.full {
+   position:fixed;
+   padding:0;
+   margin:0;
+   top:0;
+   left:0;
+   width: 100%;
+   height: 100%;
 
+   background-color: rgba(255,255,255,.07);
+}
+.logtitle {
+  width: 300px;
+  height: 70px;
+  margin: 0 auto;
+  margin-top: 90px;
+  text-align: center;
 
+}
+.logtitlehead {
+  font-size: 20px;
+  color: white;
+  padding-bottom: 10px;
+}
+.logtitlep {
+  font-size: 12px;
+  color: rgba(255, 255, 255, .5);
+}
+.logbox {
 
+  width: 300px;
+  height: 200px;
+  background-color: black;
+  margin: 0 auto;
+  margin-top: 90px;
+  text-align: center;
+}
+.logboxsu {
 
+  width: 400px;
+  height: 300px;
+  background-color: black;
+  margin: 0 auto;
+  margin-top: 90px;
+  text-align: center;
+}
+.field input {
+position: relative;
+outline: none;
+box-shadow: none;
+padding: 0;
+width: 100px;
+height: 20px;
+background-color: transparent;
+border: none;
+color: #ffffff;
+-webkit-appearance: none;
+text-align: inherit;
+vertical-align: bottom;
+font-family: sans-serif;
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+}
+.field input:focus {
+background: black;
+}
+.ftfield {
+  position: relative;
+  top: 50px;
+}
+.signbtns {
+  // background-color: green;
+  width: 50%;
+  position: relative;
+  float: right;
+}
+.signbtnssu {
+  margin: 0 auto;
+  margin-top: 20px;
+  width: 50%;
+  position: relative;
+  color: white;
 
+}
+.signbtnsav {
+   margin: 0 auto;
+   margin-top: 70px;
+   color: white;
+   width: 50%;
+   position: relative;
+
+}
+.slsu {
+  position: relative;
+  margin-top: 100px;
+}
+form input[type=submit] {
+    background-color: blue;
+    border-radius: 2px;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.0em;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 12px;
+    margin-right: 3px;
+    padding: 7px 16px 6px;
+    text-decoration: none;
+    background-image: none;
+    text-shadow: #000 0 1px 0;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 0 0px rgba(255, 255, 255, 0.2) inset;
+    border: none;
+    color: #efefef;
+    cursor: pointer;
+}
+form input:hover[type=submit] {
+  background-color: blue;
+  background-image: none;
+}
+.omnilinks {
+  margin-top: 50px;
+  // background-color: pink;
+}
+.omnilinks a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+}
+.tradelate {
+ margin-top: 100px;
+ position: relative;
+}
+
+.tradecomp {
+  width: 600px;
+  height: 600px;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: 0 auto;
+  margin-top: 100px;
+}
+
+.buysl {
+    border: 1px solid #ccc;
+    width: 120px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa url("img/icon-select.png") no-repeat 90% 50%;
+}
+
+.buysl select {
+    padding: 5px 8px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.buysl select:focus {
+    outline: none;
+}
+.oranget {
+  background-color: orange;
+  width: 600px;
+  height: 60px;
+  margin: 0 auto;
+  font-size: 18px;
+  text-align: center;
+  line-height: 60px;
+
+}
+
+.mTrade {
+  width: 100px;
+  height: 50px;
+  background: blue;
+}
 
 
 

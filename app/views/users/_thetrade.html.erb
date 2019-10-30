@@ -1,4 +1,4 @@
-  <div class="compIndex">
+  <div class="tradecomp">
   <div id="companies_searchw" action="http://localhost:3000/users/3" accept-charset="UTF-8" method="get">
   <div class="csearch">
      <%= text_field_tag :search, 'Enter your search query here', id: "isearch" %>
@@ -7,15 +7,19 @@
 <div class="myTrade">
 </div>
 <br>
-<%= number_field_tag 'quantity', id: "ivolume" %>
-<br>
-<br>
-<%= number_field_tag 'iprice' %>
-<br>
-<br>
-<div>$: <%= number_field_tag 'total' %></div>
-<div class="makeTrade"></div>
 
+<%= select_tag(:type, options_for_select([ "Sell", "Buy" ], "Buy"), {class: 'buysl'}) %><br>
+<br>
+<div>Volume: <%= number_field_tag 'quantity', id: "ivolume" %>
+<br>
+<br>
+<div>Share Price: <%= number_field_tag 'iprice', disabled: true %></div>
+<br>
+<br>
+<div>Total $: <%= number_field_tag 'total', disabled: true %></div>
+<br>
+<br>
+<div class="mTrade"></div>
 
 
   </div>

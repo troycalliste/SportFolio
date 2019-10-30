@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
 
 
-
+ get '/users/trade' => 'users#trade'
 
 
 

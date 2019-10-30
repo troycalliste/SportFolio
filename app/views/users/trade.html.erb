@@ -1,0 +1,97 @@
+<% if current_user %>
+<div class="oranget">MAKE A TRADE</div>
+<%= render "thetrade" %>
+
+
+<% end %>
+<script>
+ let functionIsRunning = false;
+ let companyTick;
+    $(document).on("keyup", "#companies_searchw input", function() {
+        searchtxt = $("#companies_searchw input").val();
+        if (functionIsRunning == false) {
+        functionIsRunning = true;
+      $.ajax({
+          type: "GET",
+          url: "http://localhost:3000/users/preview",
+          data: { searched: searchtxt},
+          success: function(response) {
+
+              result = $(response).find(".lmyTable");
+              $(".myTrade").empty().append(response);
+
+              $(".tap").click(function(){
+                let companyTick = $( this ).find( ".pvtick" ).text()
+                 companyName = $( this ).find( ".pvctitle" ).text()
+                 console.log(companyTick)
+
+                $("#companies_searchw input").val(companyName);
+                $(".myTrade").empty();
+                $.ajax({
+                    url: "http://localhost:3000/trades/findcompany",
+                    data: {company: companyTick},// all attributes of created and type createorbyorsell},
+                    success: function(response){ // put a set timeout and give time to load
+                      setTimeout(function(){
+                        price = $( response ).filter("#msm")
+                      $("#iprice").val($(price).text())
+                      console.log($(price))
+                    }, 500) //end of setTimeout
+
+                    $(".mTrade").click(
+                    function() {
+                      //before we get all attribute  inputs
+                      //we need to find thr company based on name  // currentprice of company
+                      //  don't allow user to surpass wallet -- send a red notification
+
+                      const buySelect = document.getElementsByClassName("buysl")[0];
+                      const type = buySelect.options[buySelect.selectedIndex].text;
+
+
+                       company = $("#isearch").val()
+                       vol = $('#quantity').val()
+                       price = $("#iprice").val();
+                       total = $("#total").val();
+                       console.log("tick: " + companyTick)
+                       console.log("company: " + company)
+                       console.log("vol: " + vol)
+                       console.log("p: " + price)
+                       console.log("total: " + total)
+                    $.ajax({
+                        url: "http://localhost:3000/users/newtrade",
+                        data: {name: company, vol: vol, price: price, total: total, tick: companyTick, type: type },// all attributes of created and type createorbyorsell},
+                        success: function(response){
+                          info = $(response).filter(".info")
+                          //send notification of worked or did not work
+                          // it controller it either saves or doesn't saved   // due to cost
+                         $('.oranget').empty().append($(info).text())
+
+                      }
+                     });
+                    }
+                    ); //end of maketrade
+
+
+
+                  } // end of ajax
+                })
+              }) //end of pvctitle click
+
+            }// end of success
+
+          }); //end of ajax
+          functionIsRunning = false
+        } //end of if
+
+        }); //end of document keyup
+
+        $( "#quantity" ).keyup(function() {
+        num = $(this).val();
+        price = $("#iprice").val();
+        p = parseInt(price);
+        total = num * p;
+        $("#total").val(total) ;
+        console.log(total, num, p)
+      })
+//on submit
+
+  </script>
