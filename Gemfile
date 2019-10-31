@@ -44,13 +44,13 @@ gem 'delayed_job_active_record'
 gem 'delayed_job_recurring'
 
 gem 'rest-client', '~> 1.8'
-gem 'devise'
+
 gem 'devise_lastseenable'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'gravtastic'
-
-gem 'simple_form'
+gem 'devise', '~> 4.5.0'
+gem 'simple_form', '~> 4.0.1'
 
 gem 'carrierwave', '~> 1.0'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
