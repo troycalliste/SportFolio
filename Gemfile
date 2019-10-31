@@ -4,14 +4,15 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
-
+ruby "2.5.0"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
+
 # Use postgres as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
-ruby "2.5.0"
+
 # gem 'thin'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -22,7 +23,6 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
  # Use jquery as the JavaScript library
-gem 'bootstrap'
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
@@ -50,7 +50,7 @@ gem 'devise_lastseenable'
 # gem 'capistrano-rails', group: :development
 gem 'gravtastic'
 gem 'devise', '~> 4.5.0'
-gem 'simple_form', '~> 4.0.1'
+
 
 gem 'carrierwave', '~> 1.0'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
