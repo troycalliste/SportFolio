@@ -399,7 +399,7 @@ DEPENDENCIES
   omniauth-google-oauth2 (~> 0.4.1)
   openssl
   paperclip!
-  pg (~> 1.1, >= 1.1.4)
+  pg
   puma (~> 3.0)
   rails (~> 5.1.4)
   rest-client (~> 1.8)
