@@ -77,12 +77,18 @@ GEM
     arbre (1.1.1)
       activesupport (>= 3.0.0)
     arel (8.0.0)
+    autoprefixer-rails (9.7.0)
+      execjs
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     bcrypt (3.1.13)
     bindex (0.5.0)
+    bootstrap (4.3.1)
+      autoprefixer-rails (>= 9.1.0)
+      popper_js (>= 1.14.3, < 2)
+      sassc-rails (>= 2.0.0)
     builder (3.2.3)
     byebug (10.0.0)
     carrierwave (1.2.2)
@@ -240,6 +246,7 @@ GEM
     os (1.0.0)
     pg (1.1.3)
     pg (1.1.3-x64-mingw32)
+    popper_js (1.14.5)
     public_suffix (3.0.2)
     puma (3.11.2)
     rack (2.0.7)
@@ -308,6 +315,16 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    sassc (2.2.1)
+      ffi (~> 1.9)
+    sassc (2.2.1-x64-mingw32)
+      ffi (~> 1.9)
+    sassc-rails (2.1.2)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
     sidekiq (5.2.2)
       connection_pool (~> 2.2, >= 2.2.2)
       rack-protection (>= 1.5.0)
@@ -317,6 +334,9 @@ GEM
       faraday (~> 0.9)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
+    simple_form (5.0.1)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -367,6 +387,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   activerecord-session_store (~> 1.0)
+  bootstrap
   byebug
   carrierwave (~> 1.0)
   clockwork
@@ -374,7 +395,7 @@ DEPENDENCIES
   crono
   delayed_job_active_record
   delayed_job_recurring
-  devise (~> 4.5.0)
+  devise
   devise_lastseenable
   figaro
   geocoder
@@ -393,6 +414,7 @@ DEPENDENCIES
   rest-client (~> 1.8)
   sass-rails (~> 5.0)
   sidekiq
+  simple_form
   thread
   turbolinks (~> 5)
   tzinfo-data
@@ -405,4 +427,4 @@ RUBY VERSION
    ruby 2.5.0p0
 
 BUNDLED WITH
-   1.16.1
+   1.17.3
