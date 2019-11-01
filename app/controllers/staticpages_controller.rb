@@ -18,9 +18,9 @@ class StaticpagesController < ApplicationController
     # @company.delay.updatecurrentandvol
     # @company.delay.updatechanges
     @users = User.all
-    @users.each do |u|
-      u.totalprof
-    end
+    # @users.each do |u|
+    #   u.totalprof
+    # end
 
   end
 

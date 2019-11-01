@@ -12,7 +12,7 @@
         if (functionIsRunning == false) {
         functionIsRunning = true;
       $.ajax({
-          type: "GET",
+          type: "GET", 
           url: "http://localhost:3000/users/preview",
           data: { searched: searchtxt},
           success: function(response) {
