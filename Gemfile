@@ -44,7 +44,7 @@ gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', require: 'bcry
 gem 'delayed_job_active_record'
 gem 'delayed_job_recurring'
 
-gem 'rest-client', '~> 1.8'
+gem 'rest-client', '~> 2.0', '>= 2.0.2'
 gem 'devise'
 gem 'devise_lastseenable'
 # Use Capistrano for deployment
