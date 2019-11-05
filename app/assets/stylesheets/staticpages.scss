@@ -240,7 +240,7 @@ textarea:focus, input:focus{
 .boxsetwrap {
   width: 600px;
   height: 200px;
-  background-color: gray;
+  // background-color: gray;
   // margin: 0 auto;
   top: 260px;
   left: 50%;
@@ -842,6 +842,72 @@ span .change-price {
 }
 
 
+
+.leaderboardlarge {
+  background: pink;
+  width: 800px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.leaderboardtitle {
+  font-family: arial;
+  font-weight: 900;
+}
+.trlist td a {
+  text-decoration: none;
+  color: black;
+}
+.trlist:nth-child(-n+4) td {
+   color: green;
+}
+.trlist:nth-child(-n+4) td a {
+   color: green;
+}
+.nimglarge {
+  width:600px;
+  max-height:300px;
+}
+.newswrap {
+  width: 600px;
+  margin: 0 auto;
+  margin-top: 100px;
+  background-color: rgba(255, 255, 255, .1);
+}
+.nwstitle {
+  font-size: 20px;
+  font-weight: 900;
+  font-family: arial;
+  color: white;
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 20px;
+  height: 120px;
+  text-align: left;
+  line-height: 29px;
+}
+.nwsbody {
+  font-size: 14px;
+  font-weight: 720;
+  font-family: arial;
+  color: white;
+  width: 95%;
+  margin: 0 auto;
+  overflow-y: auto;
+  text-align: left;
+  padding-bottom: 30px;
+}
+.ysb {
+  text-align: center;
+  color: black;
+  font-family: arial;
+  font-weight: 900;
+}
+.ymidset {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+
+}
 
 
 

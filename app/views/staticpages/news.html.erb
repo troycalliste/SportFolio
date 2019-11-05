@@ -1,0 +1,66 @@
+
+<div class="homenav">
+<div class="offset">
+  <div class="centerset">
+    <div class="topset">
+  <div class="logo">
+      <%= link_to "SportFolio", root_path, id: "homelogo" %>
+  </div>
+  <div class="searchhold">
+     <div class="inputsm">
+       <div class="refSearch"><i class="fa fa-search"></i></div>
+       <input type="text" id="inputTxt" placeholder="Search">
+     </div>
+  </div>
+  <div class="signup">
+          <% if user_signed_in? %>
+          <%= link_to "Edit profile", edit_user_registration_path %> |
+          <%= link_to "Logout", destroy_user_session_path, method: :delete  %>
+          <% else %>
+          <i class="fab fa-facebook-f"></i>
+           <i class="fas fa-user"></i><%= link_to "Sign up", new_user_registration_path  %> |
+           <%= link_to "Login", new_user_session_path  %>
+          <% end %>
+  </div>
+
+
+  </div> <!-- topset -->
+  <div class="bottomset">
+
+    <ul class="setlist">
+      <li>COMPANY</li>
+      <li>NEWS</li>
+      <li>LEADERBOARD</li>
+      <% if user_signed_in? %>
+      <li>COMPANY</li>
+      <li>GO PREMIUM</li>
+
+      <% else %>
+      <li>WHY SIGN UP</li>
+      <li>GO PREMIUM</li>
+
+      <% end %>
+    </ul>
+  </div>
+  </div>  <!-- centerset -->
+
+
+</div>
+
+
+</div>   <!-- homenav -->
+
+
+
+<div class="newswrap">
+<%= image_tag "#{@news.imageurl}", class: "nimglarge" %>
+<div class="nwstitle"><%= @news.title %><br>
+  <%= @news.publishedon %>
+</div>
+<div class="nwsbody">
+<%= @news.content %><br>
+<%= @news.long%>
+</div>
+
+
+</div>

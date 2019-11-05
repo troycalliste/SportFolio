@@ -39,17 +39,17 @@ Rails.application.routes.draw do
 
   get 'staticpages/help'
 
-
   get 'staticpages/tour'
-
   get 'staticpages/about'
-
+  get 'staticpages/rank'
 
   get 'static/pages'
   get 'users/preview'
   get 'users/revise'
+  get 'staticpages/news/:id', to: "staticpages#news"
   # get '/sectors/:id', to: "sectors#show"
   resources :sectors
+
   resources :users do
     resources :trades
   end

@@ -66,9 +66,15 @@
 
 <div class="boxsetwrap">
   <div class="boxsetinner">
-  <div class="boxset"><div class="rboxset"></div></div>
-  <div class="boxset"><div class="gboxset"></div></div>
-  <div class="boxset"><div class="yboxset"></div></div>
+  <div class="boxset"><div class="rboxset ysb">Most Trades</div>
+  <div class="ymidset"><%= image_tag @trader.avatar.url(:thumb) %> <%= @trader.name %></div>
+ </div>
+  <div class="boxset"><div class="gboxset ysb">Highest Rank</div>
+  <div class="ymidset"><%= image_tag @ranker.avatar.url(:thumb) %> <%= @ranker.name %></div>
+  </div>
+  <div class="boxset"><div class="yboxset  ysb">Newest Member</div>
+  <div class="ymidset"><%= image_tag @newest.avatar.url(:thumb) %> <%= @newest.name %></div>
+  </div>
 </div>
 </div>
 
@@ -89,7 +95,7 @@
     <%= "Published on " + n.publishedon.strftime('%a, %d %b %Y') %>
     </div>
     <div class="extrabutton">
-     Read More
+     <%= link_to "Read More", "staticpages/news/#{n.id}" %>
     </div>
 
   </div>
@@ -106,11 +112,11 @@
     <tr>
       <th>#</th>
       <th>Trader</th>
-      <th>Points</th>
+      <th>Units</th>
     </tr>
-    <% User.order("totalprofit DESC").each do |u|  %>
+    <% User.order("wallet DESC").each_with_index do |u, index|  %>
     <tr>
-      <td></td>
+      <td><%= index + 1%></td>
       <td><span class="i"><%= image_tag u.avatar.url(:thumb) %></span><%= u.name %></td>
       <td><%= u.totalprofit %></td></tr>
     <% end %>
@@ -122,9 +128,7 @@
     <div id="tradersnow">
       TRADERS ONLINE
   <div>
-        <% User.order("totalprofit DESC").limit(5).each do |u| %>
-          <%= u.id %>
-           <% end %>
+        <%= User.online_now.count %>
    </div>
  </div>
  </div> <!--onlinenow-->

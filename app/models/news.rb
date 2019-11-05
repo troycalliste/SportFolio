@@ -14,6 +14,7 @@ class News < ApplicationRecord
              self.content = data["articles"][self.id]["description"]
              self.imageurl = data["articles"][self.id]["urlToImage"]
              self.publishedon = data["articles"][self.id]["publishedAt"]
+             self.long = data["articles"][self.id]["content"]
 
              puts self.title
              puts self.publishedon
@@ -29,6 +30,7 @@ class News < ApplicationRecord
 
 
   def self.save_data_from_api
+    News.all.destroy_all
     RestClient.get("https://newsapi.org/v2/top-headlines?sources=cnbc&apiKey=5fd8a5116ff94c548b57d66f1faa1dec") { |response, request, result, &block|
     data = JSON.parse(response.body)
     @articles = data["articles"]
@@ -38,6 +40,7 @@ class News < ApplicationRecord
     @new.content = a["description"]
     @new.imageurl = a["urlToImage"]
     @new.publishedon = a["publishedAt"]
+    @new.long = a["content"]
     @new.save
     end
     }

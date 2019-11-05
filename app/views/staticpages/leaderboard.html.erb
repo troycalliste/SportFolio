@@ -1,34 +1,70 @@
 <div class="leaderboardlarge">
-  <h2>Leaderboard</h2>
-  <p>this is the <%= @numunrounded %></p>
+  <h2 class="leaderboardtitle">Leaderboard <span class="usertotalsp"><%= @total %></span></h2>
   <%= will_paginate @users %>
 <table>
   <tr>
-    <th>#</th>
-    <th>Trader</th>
+    <th>RANK</th>
+    <th>TRADER</th>
     <th></th>
-    <th>Points</th>
-    <th># of Trades</th>
+    <th>UNITS</th>
+    <th>TRADES</th>
   </tr>
-  <% @userspag.each do |u| %>
-  <tr>
-    <td></td>
+
+  <% @users.each_with_index do |u, index| %>
+  <tr class="trlist">
+    <td><%= @users.offset + index + 1 %></td>
     <td><span class="ilarge"><i class="fas fa-medal" style="color:#FFD700;"></i></span><%= link_to u.name, user_path(u) %></td>
-    <td><%= image_tag u.avatar.url(:thumb) %><span class="leaderboardrank">Top 1%</span></td>
+    <td><%= image_tag u.avatar.url(:thumb) %><span class="leaderboardrank"><%= u.toprank %></span></td>
     <td><%= u.totalprofit %></td>
     <td><%= u.trades.count %></td></tr>
 
   <% end %>
-  <% @offset.each do |u| %>
-   <tr>
-   <td></td>
-   <td><%= link_to u.name, user_path(u) %></td>
-   <td><%= image_tag u.avatar.url(:thumb) %><span class="leaderboardrank50">Top 50%</span></td>
-   <td><%= u.totalprofit %></td>
-   <td><%= u.trades.count %></td></tr>
 
-   <% end %>
+
+
 
 
 
 </table>
+</div>
+<script>
+  const userTotal = document.getElementsByClassName("usertotalsp")[0].innerText;
+  function top1() {
+    n = userTotal / 99
+    num = Math.ceil(n)
+    $.ajax({
+         url: "http://localhost:3000/staticpages/rank",
+         data: {topnum: num, topstr: "Top 1%"  },
+         success: function(response){
+           console.log("had success")
+         }
+       })
+  }
+  function top25() {
+    num2 = userTotal / 4
+    $.ajax({
+         url: "http://localhost:3000/staticpages/rank",
+         data: {topnum: num2, topstr: "Top 25%"  },
+         success: function(response){
+           console.log("had success")
+           // top1()
+           }
+         })
+  }
+  function top50() {
+    num3 = userTotal / 2
+    $.ajax({
+         url: "http://localhost:3000/staticpages/rank",
+         data: {topnum: num3, topstr: "Top 50%"},
+         success: function(response){
+           console.log("had success")
+           // top25();
+           }
+         })
+  }
+
+  top50();
+  top25();
+  top1();
+
+</script>

@@ -36,12 +36,12 @@ class User < ApplicationRecord
     self.shortprofit = self.trades.where(tradetype: "Short").sum(:stockprice) - self.trades.where(tradetype: "Short").sum(:currentprice)
     self.commprofit = self.trades.where.not(commodity_id: nil).sum(:currentprice) - self.trades.where.not(commodity_id: nil).sum(:stockprice)
      self.totalprofit =   self.longprofit + self.shortprofit + self.commprofit
-
-
-
      self.save
   end
 
+  def self.online_now
+      where("last_seen > ?", 15.minutes.ago)
+  end
 
 
 

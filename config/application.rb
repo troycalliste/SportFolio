@@ -14,5 +14,7 @@ module Sportfolio
     config.force_ssl = true
 
     config.active_job.queue_adapter = :sidekiq
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'fonts')
+    config.assets.precompile << /\.(?:svg|eot|woff|ttf|otf)$/
   end
 end

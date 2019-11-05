@@ -18,6 +18,10 @@ class StaticpagesController < ApplicationController
     # @company.delay.updatecurrentandvol
     # @company.delay.updatechanges
     @users = User.all
+    @ranker = @users.order('wallet DESC').first
+    @trader = @users.left_joins(:trades).group(:id).order('COUNT(trades.id) DESC').first
+    @newest = @users.order('created_at DESC').first
+
     # @users.each do |u|
     #   u.totalprof
     # end
@@ -27,13 +31,27 @@ class StaticpagesController < ApplicationController
   def help
     @companies = Company.all
   end
+  def news
+    @news = News.find(params[:id])
+  end
+  def rank
+    n = params[:topnum]
+    str = params[:topstr]
+
+
+    User.order('wallet DESC').limit(n).each do |u|
+      u.toprank = str
+      u.save
+    end
+  end
 
   def leaderboard
-    @users = User.order("totalprofit DESC").paginate(page: params[:page], per_page: 3)
+    @users = User.order("totalprofit DESC").paginate(page: params[:page], per_page: 5)
     @numunrounded = User.count / 2
     @num = @numunrounded.round
-    @userspag = @users.limit(@num)
-    @offset = @users.offset(@num)
+    @total = User.count
+    # @userspag = @users.limit(@num)   ?????
+    # @offset = @users.offset(@num)
   end
 
 
