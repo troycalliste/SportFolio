@@ -136,7 +136,7 @@ class UsersController < ApplicationController
     end
     @tp = (@user.wallet + sumarr.sum) - 10000.0
     @held =  @trades.where.not(volume: 0).order('created_at DESC')
-    if @held
+    if @held.first && @held.last
       @oldest = @held.first.ticker
       @newest = @held.last.ticker
     end
