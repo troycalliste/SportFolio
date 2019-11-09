@@ -32,11 +32,11 @@
          <li>NEWS</li>
          <li><%= link_to "LEADERBOARD", leaderboard_path%></li>
          <% if user_signed_in? %>
-         <li>PROFILE<%= link_to "LEADERBOARD", user_path(current_user)%></li>
+         <li><%= link_to "PROFILE", user_path(current_user)%></li>
          <li>GO PREMIUM</li>
 
          <% else %>
-         <li>HOME<%= link_to "HOME", root_path %></li>
+         <li><%= link_to "HOME", root_path %></li>
          <li>GO PREMIUM</li>
 
          <% end %>

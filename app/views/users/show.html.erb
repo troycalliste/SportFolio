@@ -26,15 +26,15 @@
   <div class="bottomset">
 
     <ul class="setlist">
-      <li>COMPANY</li>
+      <li><%= link_to "COMPANIES", companies_path%></li>
       <li>NEWS</li>
-      <li>LEADERBOARD</li>
+      <li><%= link_to "LEADERBOARD", leaderboard_path%></li>
       <% if user_signed_in? %>
-      <li>COMPANY</li>
+      <li><%= link_to "PROFILE", user_path(current_user)%></li>
       <li>GO PREMIUM</li>
 
       <% else %>
-      <li>WHY SIGN UP</li>
+      <li><%= link_to "HOME", root_path %></li>
       <li>GO PREMIUM</li>
 
       <% end %>
@@ -56,7 +56,7 @@
     <div class="lifetimetop">
       <div class="lifetimetab">
         <span class="lifetimetabsp">LIFETIME</span>
-        
+
         </div>
       </div>
 
