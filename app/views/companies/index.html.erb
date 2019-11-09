@@ -28,15 +28,15 @@
      <div class="bottomset">
 
        <ul class="setlist">
-         <li>COMPANY</li>
+         <li><%= link_to "COMPANIES", companies_path%></li>
          <li>NEWS</li>
-         <li>LEADERBOARD</li>
+         <li><%= link_to "LEADERBOARD", leaderboard_path%></li>
          <% if user_signed_in? %>
-         <li>COMPANY</li>
+         <li>PROFILE<%= link_to "LEADERBOARD", user_path(current_user)%></li>
          <li>GO PREMIUM</li>
 
          <% else %>
-         <li>WHY SIGN UP</li>
+         <li>HOME<%= link_to "HOME", root_path %></li>
          <li>GO PREMIUM</li>
 
          <% end %>

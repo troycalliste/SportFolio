@@ -136,8 +136,10 @@ class UsersController < ApplicationController
     end
     @tp = (@user.wallet + sumarr.sum) - 10000.0
     @held =  @trades.where.not(volume: 0).order('created_at DESC')
-    @oldest = @held.first.ticker
-    @newest = @held.last.ticker
+    if @held
+      @oldest = @held.first.ticker
+      @newest = @held.last.ticker
+    end
     # @trade = Trade.new
     # @test = Company.search(params[:search]).paginate(page: params[:page], per_page: 30)
     # @reg = Region.all
