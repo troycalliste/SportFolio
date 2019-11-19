@@ -13,7 +13,7 @@ class StaticpagesController < ApplicationController
   def usearch
     if User.where(name: params[:name])
       @user = User.where(name: params[:name])
-      render 'users/#{@user.id}'
+      render 'https://sheltered-journey-51023.herokuapp.com/users/#{@user.id}'
     else
       flash[:notice] = 'Could not find user. Please try again. '
       redirect_to root_path
