@@ -66,17 +66,5 @@
 
 
 <div id="companies"><%= render "companies" %></div>
-<script>
-  // $(document).on("click", "#companies .pagination a", function() {
-  //   $.getScript(this.href);
-  //   return false;
-  //   });
-  $(document).on("keyup", "#companies_search input", function() {
-       $.get($("#companies_search").attr("action"), $("#companies_search").serialize());
-      // return false;
-  //
-    });
 
-
-</script>
 </div>

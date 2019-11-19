@@ -1,0 +1,26 @@
+`
+$(document).on("turbolinks:load", function() {
+
+  console.log("working")
+  window.onscroll = function() {
+
+      var body = document.body; //IE 'quirks'
+      var document = document.documentElement; //IE with doctype
+      document = (document.clientHeight) ? document : body;
+
+      if (document.scrollTop == 0) {
+          alert("top");
+      }
+  }
+})
+`
+
+
+
+
+
+  # $(".searchy input").mouseout ->
+  #   $(".fa").removeClass("iconhover")
+  #
+  # if $(".searchy input").is(":focus") && $(".searchy input").is(":hover")
+  #   $(".iconhover").addClass("fa")
