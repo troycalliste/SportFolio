@@ -12,8 +12,8 @@
         if (functionIsRunning == false) {
         functionIsRunning = true;
       $.ajax({
-          type: "GET", 
-          url: "http://localhost:3000/users/preview",
+          type: "GET",
+          url: "https://sheltered-journey-51023.herokuapp.com/users/preview",
           data: { searched: searchtxt},
           success: function(response) {
 
@@ -28,7 +28,7 @@
                 $("#companies_searchw input").val(companyName);
                 $(".myTrade").empty();
                 $.ajax({
-                    url: "http://localhost:3000/trades/findcompany",
+                    url: "https://sheltered-journey-51023.herokuapp.com/trades/findcompany",
                     data: {company: companyTick},// all attributes of created and type createorbyorsell},
                     success: function(response){ // put a set timeout and give time to load
                       setTimeout(function(){
@@ -57,7 +57,7 @@
                        console.log("p: " + price)
                        console.log("total: " + total)
                     $.ajax({
-                        url: "http://localhost:3000/users/newtrade",
+                        url: "https://sheltered-journey-51023.herokuapp.com/users/newtrade",
                         data: {name: company, vol: vol, price: price, total: total, tick: companyTick, type: type },// all attributes of created and type createorbyorsell},
                         success: function(response){
                           info = $(response).filter(".info")
