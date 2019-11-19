@@ -10,6 +10,15 @@ class StaticpagesController < ApplicationController
   def index
 
   end
+  def usearch
+    if User.find(params[:name])
+      @user = User.find(params[:name])
+      render 'users/#{@user.id}'
+    else
+      flash[:notice] = 'Could not find user. Please try again. '
+      redirect_to root_path
+    end
+  end
   def home
     News.save_data_from_api
     @companies = Company.all
