@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   get 'users/preview'
   get 'users/revise'
   get 'staticpages/news/:id', to: "staticpages#news"
+  get 'usearch/:name', to: "staticpages#usearch"
   # get '/sectors/:id', to: "sectors#show"
   resources :sectors
 

@@ -197,5 +197,16 @@
 
 </div><!--acontainer-->
 <script>
+  const input = document.getElementById("containTxt");
   console.log("works");
+  input.addEventListener("keyup", function(event) {
+     if (this.value == '' || this.value == this.defaultValue) {
+       return
+   } else if (event.keyCode === 13) {
+       event.preventDefault();
+       url = "https://sheltered-journey-51023.herokuapp.com/usearch/" + input.value
+       window.location = url;
+
+      }
+    });
 </script>
