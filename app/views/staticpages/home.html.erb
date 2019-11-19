@@ -33,7 +33,7 @@
       <li><%= link_to "LEADERBOARD", leaderboard_path%></li>
       <% if user_signed_in? %>
       <li><%= link_to "PROFILE", user_path(current_user)%></li>
-      <li>GO PREMIUM</li>
+      <li><%= link_to "CREATE TRADE", users_trade_path%></li>
 
       <% else %>
       <li><%= link_to "HOME", root_path %></li>
