@@ -66,7 +66,7 @@
     <td><%= @users.offset + index + 1 %></td>
     <td><span class="ilarge"><i class="fas fa-medal" style="color:#FFD700;"></i></span><%= link_to u.name, user_path(u) %></td>
     <td><%= image_tag u.avatar.url(:thumb) %><span class="leaderboardrank"><%= u.toprank %></span></td>
-    <td><%= u.totalprofit %></td>
+    <td><%= u.wallet %></td>
     <td><%= u.trades.count %></td></tr>
 
   <% end %>
