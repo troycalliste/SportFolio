@@ -13,14 +13,14 @@
      </div>
   </div>
   <div class="signup">
-     Log in with username: example@gmail.com and password: example
+
           <% if user_signed_in? %>
           <%= link_to "Edit profile", edit_user_registration_path %> |
           <%= link_to "Logout", users_sign_out_path %>
           <% else %>
           <i class="fab fa-facebook-f"></i>
            <i class="fas fa-user"></i><%= link_to "Sign up", new_user_registration_path  %> |
-           <%= link_to "Login", new_user_session_path  %> <span>(Log in to access company tab and user profiles.)</span>
+           <%= link_to "Login", new_user_session_path  %> <span>(Log in for company/user profile access.)</span>
           <% end %>
   </div>
 
