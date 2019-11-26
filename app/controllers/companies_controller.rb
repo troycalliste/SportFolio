@@ -2,7 +2,7 @@ class CompaniesController < ApplicationController
   include ActionController::Live
   # rescue_from ActionView::Template::Error, with: :handle_timeout
   # before_action :authenticate_user!, only: [:show]
-  before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_action :set_company, only: [:edit, :update, :destroy]
 
   # GET /companies
   # GET /companies.json
