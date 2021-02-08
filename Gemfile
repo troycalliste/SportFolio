@@ -53,7 +53,7 @@ gem 'gravtastic'
 
 gem 'simple_form'
 
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 2.1'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
 gem 'will_paginate'
 
